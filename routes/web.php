@@ -12,11 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-/*Route::get('/{any}', function () {
-    return view('layouts.vue');
-})->where('any', '.*');
-*/
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index']);
 
 Route::post('/send_message',[App\Http\Controllers\IndexController::class,'sendMessage']);
@@ -26,5 +21,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //default router handler
-Route::get('{path}', [App\Http\Controllers\HomeController::class, 'index'])->where('path','([A-z\d\-\/_.]+)?');
+Route::get('{path}', [App\Http\Controllers\IndexController::class, 'index'])->where('path','([A-z\d\-\/_.]+)?');
 

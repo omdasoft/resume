@@ -5,8 +5,18 @@ window.Vue = require('vue').default;
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 
-Vue.component('header-component', require('./components/HeaderComponents.vue').default);
+Vue.component('header-component', require('./components/HeaderComponent.vue').default);
+Vue.component('sidebar-component', require('./components/sidebarComponent.vue').default);
+Vue.component('footer-component', require('./components/footerComponent.vue').default);
 Vue.component('app-component', require('./layouts/App.vue').default);
+
+
+//dahsboard components
+Vue.component('dashboard-navbar', require('./dashboard/components/TheNavbar.vue').default);
+Vue.component('dashboard-sidebar', require('./dashboard/components/TheSidebar.vue').default);
+Vue.component('dashboard-footer', require('./dashboard/components/TheFooter.vue').default);
+Vue.component('dashboard-component', require('./layouts/Admin.vue').default);
+
 
 import { Form, HasError, AlertError } from 'vform';
 window.Form = Form;
@@ -29,28 +39,8 @@ const Toast = Swal.mixin({
 })
 window.Toast = Toast
 
-//import vue router
-import VueRouter from 'vue-router';
-Vue.use(VueRouter);
-
-
-import Dashboard from './components/admin/DashboardComponent.vue';
-import Message from './components/admin/MessageComponent.vue';
-import Profile from './components/admin/ProfileComponent.vue';
-
-//define the components links
-let routes = [
-  { path: '/dashboard', component:Dashboard},
-  { path: '/messages', component:Message},
-  { path:'/profile', component:Profile}
- 
-  ]
-
-   //create new vuerouter instance
-   const router = new VueRouter({
-    mode: 'history',
-    routes // short for `routes: routes`
-  })
+import router from './router';
+import App from './layouts/App.vue';
 
 const app = new Vue({
     router,
