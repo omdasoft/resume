@@ -42,7 +42,7 @@
               <router-link :to="{name:'index'}" class="active"><i class="fa fa-home"></i></router-link>
               <router-link :to="{name:'posts'}">Posts</router-link>
               <router-link :to="{name:'portfolio'}">Portfolio</router-link>
-              <router-link :to="{name:'contact'}">Contact Us</router-link>
+              <router-link :to="{name:'contact'}">Message Me</router-link>
             </div>
         </div>
       </div>

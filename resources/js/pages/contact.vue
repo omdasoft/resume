@@ -1,7 +1,7 @@
 <template>
       <section class="latest section">
             <div class="section-inner shadow-sm rounded">
-              <h2 class="heading">Contact Us</h2>
+              <h2 class="heading">Send Me A Message</h2>
               <div class="content">
                 <form @submit.prevent="sendMessage">
                     <div class="md-form mb-3">
