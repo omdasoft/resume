@@ -7,7 +7,7 @@ use App\Models\Message;
 class IndexController extends Controller
 {
     public function index(){
-        return view('layouts.vue');
+        return view('layouts.front');
     }
 
     public function sendMessage(Request $request){

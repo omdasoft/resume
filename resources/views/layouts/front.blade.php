@@ -32,7 +32,7 @@
 
 <body>
 <div id="app">
-    <app-component></app-component>
+    <front-layout-component></front-layout-component>
 </div>
 
     <script src="{{ mix('/js/app.js') }}"></script>

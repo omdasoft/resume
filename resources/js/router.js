@@ -10,6 +10,7 @@ import Posts from './pages/posts.vue';
 import Dashboard from './dashboard/pages/dashboard.vue';
 import Message from './dashboard/pages/message.vue';
 import Profile from './dashboard/pages/profile.vue';
+import MyContacts from './dashboard/pages/myContact.vue';
 
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -38,7 +39,7 @@ const router = new VueRouter({
             component: Posts
         },
         {
-            path: '/message',
+            path: '/dashboard/message',
             name: 'message',
             component: Message
         },
@@ -46,7 +47,13 @@ const router = new VueRouter({
             path: '/dashboard/profile',
             name: 'profile',
             component: Profile
+        },
+        {
+            path: '/dashboard/myContacts',
+            name:'mycontacts',
+            component: MyContacts
         }
+
     ]
     
 });

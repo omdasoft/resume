@@ -18,7 +18,7 @@ Route::post('/send_message',[App\Http\Controllers\IndexController::class,'sendMe
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
 //default router handler
 Route::get('{path}', [App\Http\Controllers\IndexController::class, 'index'])->where('path','([A-z\d\-\/_.]+)?');

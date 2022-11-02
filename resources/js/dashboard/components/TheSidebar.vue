@@ -1,7 +1,7 @@
 <template>
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <router-link :to="{name:'/home'}" class="brand-link">
+        <router-link to="/dashboard" class="brand-link">
         <img src="/admin/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
         <span class="brand-text font-weight-light">My Admin</span>
@@ -25,7 +25,7 @@
             <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <router-link :to="{name: '/home'}" class="nav-link">
+                <router-link to="/dashboard" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard
@@ -33,15 +33,23 @@
                 </router-link>
             </li>
             <li class="nav-item">
-                <router-link :to="{name: '/profile'}" class="nav-link">
+                <router-link to="/dashboard/profile" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                     Profile
                 </p>
                 </router-link>
             </li>
+             <li class="nav-item">
+                <router-link to="/dashboard/mycontacts" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                    Contacts
+                </p>
+                </router-link>
+            </li>
             <li class="nav-item">
-                <router-link :to="{name: '/message'}" class="nav-link">
+                <router-link to="/dashboard/message" class="nav-link">
                 <i class="nav-icon fas fa-envelope"></i>
                 <p>
                     Messages
@@ -66,13 +74,12 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <i class="nav-icon fas fa-power-off"></i>
-                <p>Logout</p>
+                <a class="nav-link" href="" @click.prevent="logout">
+                    <i class="nav-icon fas fa-power-off"></i>
+                    <p>Logout</p>
                 </a>
-
-                <form id="logout-form" action="#" method="POST" style="display: none;">
-                                            @csrf
+                <form id="logout-form" method="POST" style="display: none;">
+                  @csrf
                 </form>
             </li>
 
@@ -83,3 +90,24 @@
         <!-- /.sidebar -->}
     </aside>
 </template>
+<script>
+    export default {
+        data: () => ({
+             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+             }),   
+        methods:{
+            logout:function(){
+               axios.post('logout').then(response => {
+                  if (response.status === 302 || 401) {
+                    window.location = '/login';
+                  }
+                  else {
+                    console.log('can not logout something goes wrong');
+                  }
+                }).catch(error => {
+                    console.log(error.getMessage);
+              });
+            },
+        },
+    }
+</script>

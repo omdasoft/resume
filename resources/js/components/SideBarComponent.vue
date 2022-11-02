@@ -15,6 +15,11 @@
                     ><a>omdasoft@hotmail.com</a>
                   </li>
                   <li>
+                    <i class="fas fa-phone"></i
+                    ><span class="sr-only">Phone:</span
+                    ><a>+971569180076</a>
+                  </li>
+                  <li>
                     <i class="fas fa-external-link-alt"></i>
                     <span class="sr-only">GitHub:</span>
                     <a href="https://github.com/omdasoft" target="new">https://github.com/omdasoft</a>

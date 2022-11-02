@@ -5,17 +5,16 @@ window.Vue = require('vue').default;
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 
+//front components
 Vue.component('header-component', require('./components/HeaderComponent.vue').default);
 Vue.component('sidebar-component', require('./components/sidebarComponent.vue').default);
 Vue.component('footer-component', require('./components/footerComponent.vue').default);
-Vue.component('app-component', require('./layouts/App.vue').default);
-
-
+Vue.component('front-layout-component', require('./layouts/Front.vue').default);
 //dahsboard components
 Vue.component('dashboard-navbar', require('./dashboard/components/TheNavbar.vue').default);
 Vue.component('dashboard-sidebar', require('./dashboard/components/TheSidebar.vue').default);
 Vue.component('dashboard-footer', require('./dashboard/components/TheFooter.vue').default);
-Vue.component('dashboard-component', require('./layouts/Admin.vue').default);
+Vue.component('dashboard-layout-component', require('./layouts/Dashboard.vue').default);
 
 
 import { Form, HasError, AlertError } from 'vform';
@@ -40,7 +39,6 @@ const Toast = Swal.mixin({
 window.Toast = Toast
 
 import router from './router';
-import App from './layouts/App.vue';
 
 const app = new Vue({
     router,
