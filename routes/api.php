@@ -18,7 +18,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
 
+//backend apis
+
 Route::get('/get_messages',[\App\Http\Controllers\MessageController::class,'index']);
 Route::get('/delete_message',[\App\Http\Controllers\MessageController::class,'delete']);
 Route::get('/dashboard/myContacts', [\App\Http\Controllers\ContactController::class, 'index']);
 Route::put('/dashboard/myContacts/{id}', [\App\Http\Controllers\ContactController::class, 'update']);
+
+
+//fornend apis
+Route::get('/myContacts', [\App\Http\Controllers\IndexController::class, 'myContacts']);

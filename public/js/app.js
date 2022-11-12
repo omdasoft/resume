@@ -1895,11 +1895,288 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      githubUrl: '',
+      linkedinUrl: ''
+    };
+  },
+  methods: {
+    getMyContacts: function getMyContacts() {
+      var _this = this;
+
+      axios.get('/api/myContacts').then(function (response) {
+        _this.githubUrl = response.data.github;
+        _this.linkedinUrl = response.data.linkedin;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getMyContacts();
+    console.log('component mounted');
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SidebarComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SidebarComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
 //
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      myContacts: {},
+      githubLink: ''
+    };
+  },
+  methods: {
+    getMyContacts: function getMyContacts() {
+      var _this = this;
+
+      axios.get('/api/myContacts').then(function (response) {
+        _this.myContacts = response.data;
+        _this.githubLink = _this.myContacts.github;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getMyContacts();
+    console.log('component mounted');
+  }
+});
 
 /***/ }),
 
@@ -2941,7 +3218,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 Vue.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js")); //front components
 
 Vue.component('header-component', __webpack_require__(/*! ./components/HeaderComponent.vue */ "./resources/js/components/HeaderComponent.vue").default);
-Vue.component('sidebar-component', __webpack_require__(/*! ./components/sidebarComponent.vue */ "./resources/js/components/sidebarComponent.vue").default);
+Vue.component('sidebar-component', __webpack_require__(/*! ./components/SidebarComponent.vue */ "./resources/js/components/SidebarComponent.vue").default);
 Vue.component('footer-component', __webpack_require__(/*! ./components/footerComponent.vue */ "./resources/js/components/footerComponent.vue").default);
 Vue.component('front-layout-component', __webpack_require__(/*! ./layouts/Front.vue */ "./resources/js/layouts/Front.vue").default); //dahsboard components
 
@@ -43776,6 +44053,45 @@ component.options.__file = "resources/js/components/HeaderComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/SidebarComponent.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/SidebarComponent.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _SidebarComponent_vue_vue_type_template_id_54833a28___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SidebarComponent.vue?vue&type=template&id=54833a28& */ "./resources/js/components/SidebarComponent.vue?vue&type=template&id=54833a28&");
+/* harmony import */ var _SidebarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SidebarComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/SidebarComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _SidebarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _SidebarComponent_vue_vue_type_template_id_54833a28___WEBPACK_IMPORTED_MODULE_0__.render,
+  _SidebarComponent_vue_vue_type_template_id_54833a28___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/SidebarComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/footerComponent.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/components/footerComponent.vue ***!
@@ -43809,43 +44125,6 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/footerComponent.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/sidebarComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/sidebarComponent.vue ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _sidebarComponent_vue_vue_type_template_id_6c0da268___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sidebarComponent.vue?vue&type=template&id=6c0da268& */ "./resources/js/components/sidebarComponent.vue?vue&type=template&id=6c0da268&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-var script = {}
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__.default)(
-  script,
-  _sidebarComponent_vue_vue_type_template_id_6c0da268___WEBPACK_IMPORTED_MODULE_0__.render,
-  _sidebarComponent_vue_vue_type_template_id_6c0da268___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/sidebarComponent.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -44365,6 +44644,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/SidebarComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/SidebarComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SidebarComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SidebarComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/dashboard/components/TheSidebar.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************!*\
   !*** ./resources/js/dashboard/components/TheSidebar.vue?vue&type=script&lang=js& ***!
@@ -44526,6 +44821,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/SidebarComponent.vue?vue&type=template&id=54833a28&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/SidebarComponent.vue?vue&type=template&id=54833a28& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarComponent_vue_vue_type_template_id_54833a28___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarComponent_vue_vue_type_template_id_54833a28___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarComponent_vue_vue_type_template_id_54833a28___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SidebarComponent.vue?vue&type=template&id=54833a28& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SidebarComponent.vue?vue&type=template&id=54833a28&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/footerComponent.vue?vue&type=template&id=5f4e4927&":
 /*!************************************************************************************!*\
   !*** ./resources/js/components/footerComponent.vue?vue&type=template&id=5f4e4927& ***!
@@ -44539,23 +44851,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_footerComponent_vue_vue_type_template_id_5f4e4927___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_footerComponent_vue_vue_type_template_id_5f4e4927___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./footerComponent.vue?vue&type=template&id=5f4e4927& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/footerComponent.vue?vue&type=template&id=5f4e4927&");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/sidebarComponent.vue?vue&type=template&id=6c0da268&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/sidebarComponent.vue?vue&type=template&id=6c0da268& ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_sidebarComponent_vue_vue_type_template_id_6c0da268___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_sidebarComponent_vue_vue_type_template_id_6c0da268___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_sidebarComponent_vue_vue_type_template_id_6c0da268___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./sidebarComponent.vue?vue&type=template&id=6c0da268& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/sidebarComponent.vue?vue&type=template&id=6c0da268&");
 
 
 /***/ }),
@@ -44800,7 +45095,37 @@ var render = function() {
   return _c("header", { staticClass: "header" }, [
     _c("div", { staticClass: "container clearfix" }, [
       _c("div", { staticClass: "row" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("img", {
+            staticClass: "profile-image img-fluid float-left rounded-circle",
+            attrs: {
+              src: "/images/profile.jpg",
+              width: "180",
+              height: "180",
+              alt: "profile image"
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "profile-content float-left" }, [
+            _c("h1", { staticClass: "name" }, [_vm._v("Emad Aldin Ali")]),
+            _vm._v(" "),
+            _c("h2", { staticClass: "desc" }, [_vm._v("Full Stack Developer")]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "social list-inline" }, [
+              _c("li", { staticClass: "list-inline-item" }, [
+                _c("a", { attrs: { href: _vm.linkedinUrl, target: "new" } }, [
+                  _c("i", { staticClass: "fab fa-linkedin-in" })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "list-inline-item" }, [
+                _c("a", { attrs: { href: _vm.githubUrl, target: "new" } }, [
+                  _c("i", { staticClass: "fab fa-github-alt" })
+                ])
+              ])
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-6" }, [
           _c(
@@ -44832,53 +45157,354 @@ var render = function() {
     ])
   ])
 }
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SidebarComponent.vue?vue&type=template&id=54833a28&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SidebarComponent.vue?vue&type=template&id=54833a28& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("aside", { staticClass: "info aside section" }, [
+      _c("div", { staticClass: "section-inner shadow-sm rounded" }, [
+        _c("h2", { staticClass: "heading sr-only" }, [
+          _vm._v("Basic Information")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "content" }, [
+          _c("ul", { staticClass: "list-unstyled" }, [
+            _c("li", [
+              _c("i", { staticClass: "fas fa-map-marker-alt" }),
+              _c("span", { staticClass: "sr-only" }, [_vm._v("Location:")]),
+              _vm._v(_vm._s(_vm.myContacts.address) + "\n              ")
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("i", { staticClass: "fas fa-envelope" }),
+              _c("span", { staticClass: "sr-only" }, [_vm._v("Email:")]),
+              _c("a", [_vm._v(_vm._s(_vm.myContacts.email))])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("i", { staticClass: "fas fa-phone" }),
+              _c("span", { staticClass: "sr-only" }, [_vm._v("Phone:")]),
+              _c("a", [_vm._v(_vm._s(_vm.myContacts.phone))])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("i", { staticClass: "fas fa-external-link-alt" }),
+              _vm._v(" "),
+              _c("span", { staticClass: "sr-only" }, [_vm._v("GitHub:")]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: _vm.githubLink, target: "new" } }, [
+                _vm._v(_vm._s(_vm.githubLink))
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _vm._m(3)
+  ])
+}
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("img", {
-        staticClass: "profile-image img-fluid float-left rounded-circle",
-        attrs: {
-          src: "/images/profile.jpg",
-          width: "180",
-          height: "180",
-          alt: "profile image"
-        }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "profile-content float-left" }, [
-        _c("h1", { staticClass: "name" }, [_vm._v("Emad Aldin Ali")]),
+    return _c("aside", { staticClass: "skills aside section" }, [
+      _c("div", { staticClass: "section-inner shadow-sm rounded" }, [
+        _c("h2", { staticClass: "heading" }, [_vm._v("Skills")]),
         _vm._v(" "),
-        _c("h2", { staticClass: "desc" }, [_vm._v("Full Stack Developer")]),
-        _vm._v(" "),
-        _c("ul", { staticClass: "social list-inline" }, [
-          _c("li", { staticClass: "list-inline-item" }, [
-            _c("a", { attrs: { href: "#" } }, [
-              _c("i", { staticClass: "fab fa-facebook" })
+        _c("div", { staticClass: "content" }, [
+          _c("div", { staticClass: "skillset" }, [
+            _c("div", { staticClass: "item" }, [
+              _c("h3", { staticClass: "level-title" }, [
+                _vm._v("\n                  php "),
+                _c("span", {
+                  staticClass: "level-label",
+                  attrs: {
+                    "data-toggle": "tooltip",
+                    "data-placement": "left",
+                    "data-animation": "true",
+                    title:
+                      "You can use the tooltip to explain more about your skill level..."
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "level-bar" }, [
+                _c("div", {
+                  staticClass: "level-bar-inner",
+                  attrs: { "data-level": "85%" }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "item" }, [
+              _c("h3", { staticClass: "level-title" }, [
+                _vm._v("\n                  Laravel "),
+                _c("span", {
+                  staticClass: "level-label",
+                  attrs: {
+                    "data-toggle": "tooltip",
+                    "data-placement": "left",
+                    "data-animation": "true",
+                    title:
+                      "You can use the tooltip to explain more about your skill level..."
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "level-bar" }, [
+                _c("div", {
+                  staticClass: "level-bar-inner",
+                  attrs: { "data-level": "75%" }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "item" }, [
+              _c("h3", { staticClass: "level-title" }, [
+                _vm._v("\n                  Javascript & jQuery"),
+                _c("span", {
+                  staticClass: "level-label",
+                  attrs: {
+                    "data-toggle": "tooltip",
+                    "data-placement": "left",
+                    "data-animation": "true",
+                    title:
+                      "You can use the tooltip to explain more about your skill level..."
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "level-bar" }, [
+                _c("div", {
+                  staticClass: "level-bar-inner",
+                  attrs: { "data-level": "70%" }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "item" }, [
+              _c("h3", { staticClass: "level-title" }, [
+                _vm._v("\n                  Vue Js "),
+                _c("span", {
+                  staticClass: "level-label",
+                  attrs: {
+                    "data-toggle": "tooltip",
+                    "data-placement": "left",
+                    "data-animation": "true",
+                    title:
+                      "You can use the tooltip to explain more about your skill level..."
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "level-bar" }, [
+                _c("div", {
+                  staticClass: "level-bar-inner",
+                  attrs: { "data-level": "70%" }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "item" }, [
+              _c("h3", { staticClass: "level-title" }, [
+                _vm._v("\n                  HTML5, CSS3, Bootstrap"),
+                _c("span", {
+                  staticClass: "level-label",
+                  attrs: {
+                    "data-toggle": "tooltip",
+                    "data-placement": "left",
+                    "data-animation": "true",
+                    title:
+                      "You can use the tooltip to explain more about your skill level..."
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "level-bar" }, [
+                _c("div", {
+                  staticClass: "level-bar-inner",
+                  attrs: { "data-level": "90%" }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "item" }, [
+              _c("h3", { staticClass: "level-title" }, [
+                _vm._v("\n                  Java"),
+                _c("span", {
+                  staticClass: "level-label",
+                  attrs: {
+                    "data-toggle": "tooltip",
+                    "data-placement": "left",
+                    "data-animation": "true",
+                    title:
+                      "You can use the tooltip to explain more about your skill level..."
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "level-bar" }, [
+                _c("div", {
+                  staticClass: "level-bar-inner",
+                  attrs: { "data-level": "60%" }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c(
+                "a",
+                {
+                  staticClass: "more-link",
+                  attrs: { href: "/docs/cv.pdf", download: "" }
+                },
+                [
+                  _c("i", { staticClass: "far fa-file-pdf fa-2x" }),
+                  _vm._v(" More on Cv")
+                ]
+              )
             ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-inline-item" }, [
-            _c(
-              "a",
-              {
-                attrs: {
-                  href: "https://www.linkedin.com/in/emad-aldin-ali-707204174/",
-                  target: "new"
-                }
-              },
-              [_c("i", { staticClass: "fab fa-linkedin-in" })]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-inline-item" }, [
-            _c(
-              "a",
-              { attrs: { href: "https://github.com/omdasoft", target: "new" } },
-              [_c("i", { staticClass: "fab fa-github-alt" })]
-            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("aside", { staticClass: "education aside section" }, [
+      _c("div", { staticClass: "section-inner shadow-sm rounded" }, [
+        _c("h2", { staticClass: "heading" }, [_vm._v("Education")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "content" }, [
+          _c("div", { staticClass: "item" }, [
+            _c("h3", { staticClass: "title" }, [
+              _c("i", { staticClass: "fas fa-graduation-cap" }),
+              _vm._v(" BSc Information systems\n              ")
+            ]),
+            _vm._v(" "),
+            _c("h4", { staticClass: "university" }, [
+              _vm._v(
+                "\n                Omdurman Islamic University\n                "
+              ),
+              _c("span", { staticClass: "year" }, [_vm._v("(2014-2016)")])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("aside", { staticClass: "languages aside section" }, [
+      _c("div", { staticClass: "section-inner shadow-sm rounded" }, [
+        _c("h2", { staticClass: "heading" }, [_vm._v("Languages")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "content" }, [
+          _c("ul", { staticClass: "list-unstyled" }, [
+            _c("li", { staticClass: "item" }, [
+              _c("span", { staticClass: "title" }, [
+                _c("strong", [_vm._v("Arabic:")])
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "level" }, [
+                _vm._v("Native Speaker "),
+                _c("br", { staticClass: "visible-xs" }),
+                _c("i", { staticClass: "fas fa-star" }),
+                _vm._v(" "),
+                _c("i", { staticClass: "fas fa-star" }),
+                _vm._v(" "),
+                _c("i", { staticClass: "fas fa-star" }),
+                _vm._v(" "),
+                _c("i", { staticClass: "fas fa-star" }),
+                _vm._v(" "),
+                _c("i", { staticClass: "fas fa-star" })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "item" }, [
+              _c("span", { staticClass: "title" }, [
+                _c("strong", [_vm._v("English:")])
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "level" }, [
+                _vm._v("Professional Proficiency\n                  "),
+                _c("br", { staticClass: "visible-sm visible-xs" }),
+                _c("i", { staticClass: "fas fa-star" }),
+                _vm._v(" "),
+                _c("i", { staticClass: "fas fa-star" }),
+                _vm._v(" "),
+                _c("i", { staticClass: "fas fa-star" }),
+                _vm._v(" "),
+                _c("i", { staticClass: "fas fa-star-half" })
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("aside", { staticClass: "list conferences aside section" }, [
+      _c("div", { staticClass: "section-inner shadow-sm rounded" }, [
+        _c("h2", { staticClass: "heading" }, [_vm._v("Conferences")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "content" }, [
+          _c("ul", { staticClass: "list-unstyled" }, [
+            _c("li", [
+              _c("i", { staticClass: "far fa-calendar-alt" }),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href:
+                      "https://10times.com/international-conference-on-cyber-law-cyber-crime",
+                    target: "_blank"
+                  }
+                },
+                [
+                  _vm._v(
+                    "International Conference on Cyberlaw, Cybercrime and Cybersecurity"
+                  )
+                ]
+              ),
+              _vm._v(" (New Delhi)\n              ")
+            ])
           ])
         ])
       ])
@@ -44920,348 +45546,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/sidebarComponent.vue?vue&type=template&id=6c0da268&":
-/*!****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/sidebarComponent.vue?vue&type=template&id=6c0da268& ***!
-  \****************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("aside", { staticClass: "info aside section" }, [
-        _c("div", { staticClass: "section-inner shadow-sm rounded" }, [
-          _c("h2", { staticClass: "heading sr-only" }, [
-            _vm._v("Basic Information")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "content" }, [
-            _c("ul", { staticClass: "list-unstyled" }, [
-              _c("li", [
-                _c("i", { staticClass: "fas fa-map-marker-alt" }),
-                _c("span", { staticClass: "sr-only" }, [_vm._v("Location:")]),
-                _vm._v("Sudan, Khartoum\n              ")
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("i", { staticClass: "fas fa-envelope" }),
-                _c("span", { staticClass: "sr-only" }, [_vm._v("Email:")]),
-                _c("a", [_vm._v("omdasoft@hotmail.com")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("i", { staticClass: "fas fa-phone" }),
-                _c("span", { staticClass: "sr-only" }, [_vm._v("Phone:")]),
-                _c("a", [_vm._v("+971569180076")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("i", { staticClass: "fas fa-external-link-alt" }),
-                _vm._v(" "),
-                _c("span", { staticClass: "sr-only" }, [_vm._v("GitHub:")]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    attrs: {
-                      href: "https://github.com/omdasoft",
-                      target: "new"
-                    }
-                  },
-                  [_vm._v("https://github.com/omdasoft")]
-                )
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("aside", { staticClass: "skills aside section" }, [
-        _c("div", { staticClass: "section-inner shadow-sm rounded" }, [
-          _c("h2", { staticClass: "heading" }, [_vm._v("Skills")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "content" }, [
-            _c("div", { staticClass: "skillset" }, [
-              _c("div", { staticClass: "item" }, [
-                _c("h3", { staticClass: "level-title" }, [
-                  _vm._v("\n                  php "),
-                  _c("span", {
-                    staticClass: "level-label",
-                    attrs: {
-                      "data-toggle": "tooltip",
-                      "data-placement": "left",
-                      "data-animation": "true",
-                      title:
-                        "You can use the tooltip to explain more about your skill level..."
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "level-bar" }, [
-                  _c("div", {
-                    staticClass: "level-bar-inner",
-                    attrs: { "data-level": "85%" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "item" }, [
-                _c("h3", { staticClass: "level-title" }, [
-                  _vm._v("\n                  Laravel "),
-                  _c("span", {
-                    staticClass: "level-label",
-                    attrs: {
-                      "data-toggle": "tooltip",
-                      "data-placement": "left",
-                      "data-animation": "true",
-                      title:
-                        "You can use the tooltip to explain more about your skill level..."
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "level-bar" }, [
-                  _c("div", {
-                    staticClass: "level-bar-inner",
-                    attrs: { "data-level": "75%" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "item" }, [
-                _c("h3", { staticClass: "level-title" }, [
-                  _vm._v("\n                  Javascript & jQuery"),
-                  _c("span", {
-                    staticClass: "level-label",
-                    attrs: {
-                      "data-toggle": "tooltip",
-                      "data-placement": "left",
-                      "data-animation": "true",
-                      title:
-                        "You can use the tooltip to explain more about your skill level..."
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "level-bar" }, [
-                  _c("div", {
-                    staticClass: "level-bar-inner",
-                    attrs: { "data-level": "70%" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "item" }, [
-                _c("h3", { staticClass: "level-title" }, [
-                  _vm._v("\n                  Vue Js "),
-                  _c("span", {
-                    staticClass: "level-label",
-                    attrs: {
-                      "data-toggle": "tooltip",
-                      "data-placement": "left",
-                      "data-animation": "true",
-                      title:
-                        "You can use the tooltip to explain more about your skill level..."
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "level-bar" }, [
-                  _c("div", {
-                    staticClass: "level-bar-inner",
-                    attrs: { "data-level": "70%" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "item" }, [
-                _c("h3", { staticClass: "level-title" }, [
-                  _vm._v("\n                  HTML5, CSS3, Bootstrap"),
-                  _c("span", {
-                    staticClass: "level-label",
-                    attrs: {
-                      "data-toggle": "tooltip",
-                      "data-placement": "left",
-                      "data-animation": "true",
-                      title:
-                        "You can use the tooltip to explain more about your skill level..."
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "level-bar" }, [
-                  _c("div", {
-                    staticClass: "level-bar-inner",
-                    attrs: { "data-level": "90%" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "item" }, [
-                _c("h3", { staticClass: "level-title" }, [
-                  _vm._v("\n                  Java"),
-                  _c("span", {
-                    staticClass: "level-label",
-                    attrs: {
-                      "data-toggle": "tooltip",
-                      "data-placement": "left",
-                      "data-animation": "true",
-                      title:
-                        "You can use the tooltip to explain more about your skill level..."
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "level-bar" }, [
-                  _c("div", {
-                    staticClass: "level-bar-inner",
-                    attrs: { "data-level": "60%" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "more-link",
-                    attrs: { href: "/docs/cv.pdf", download: "" }
-                  },
-                  [
-                    _c("i", { staticClass: "far fa-file-pdf fa-2x" }),
-                    _vm._v(" More on Cv")
-                  ]
-                )
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("aside", { staticClass: "education aside section" }, [
-        _c("div", { staticClass: "section-inner shadow-sm rounded" }, [
-          _c("h2", { staticClass: "heading" }, [_vm._v("Education")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "content" }, [
-            _c("div", { staticClass: "item" }, [
-              _c("h3", { staticClass: "title" }, [
-                _c("i", { staticClass: "fas fa-graduation-cap" }),
-                _vm._v(" BSc Information systems\n              ")
-              ]),
-              _vm._v(" "),
-              _c("h4", { staticClass: "university" }, [
-                _vm._v(
-                  "\n                Omdurman Islamic University\n                "
-                ),
-                _c("span", { staticClass: "year" }, [_vm._v("(2014-2016)")])
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("aside", { staticClass: "languages aside section" }, [
-        _c("div", { staticClass: "section-inner shadow-sm rounded" }, [
-          _c("h2", { staticClass: "heading" }, [_vm._v("Languages")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "content" }, [
-            _c("ul", { staticClass: "list-unstyled" }, [
-              _c("li", { staticClass: "item" }, [
-                _c("span", { staticClass: "title" }, [
-                  _c("strong", [_vm._v("Arabic:")])
-                ]),
-                _vm._v(" "),
-                _c("span", { staticClass: "level" }, [
-                  _vm._v("Native Speaker "),
-                  _c("br", { staticClass: "visible-xs" }),
-                  _c("i", { staticClass: "fas fa-star" }),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "fas fa-star" }),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "fas fa-star" }),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "fas fa-star" }),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "fas fa-star" })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "item" }, [
-                _c("span", { staticClass: "title" }, [
-                  _c("strong", [_vm._v("English:")])
-                ]),
-                _vm._v(" "),
-                _c("span", { staticClass: "level" }, [
-                  _vm._v("Professional Proficiency\n                  "),
-                  _c("br", { staticClass: "visible-sm visible-xs" }),
-                  _c("i", { staticClass: "fas fa-star" }),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "fas fa-star" }),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "fas fa-star" }),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "fas fa-star-half" })
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("aside", { staticClass: "list conferences aside section" }, [
-        _c("div", { staticClass: "section-inner shadow-sm rounded" }, [
-          _c("h2", { staticClass: "heading" }, [_vm._v("Conferences")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "content" }, [
-            _c("ul", { staticClass: "list-unstyled" }, [
-              _c("li", [
-                _c("i", { staticClass: "far fa-calendar-alt" }),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    attrs: {
-                      href:
-                        "https://10times.com/international-conference-on-cyber-law-cyber-crime",
-                      target: "_blank"
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "International Conference on Cyberlaw, Cybercrime and Cybersecurity"
-                    )
-                  ]
-                ),
-                _vm._v(" (New Delhi)\n              ")
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
 render._withStripped = true
 
 

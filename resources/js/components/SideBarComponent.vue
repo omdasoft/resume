@@ -7,22 +7,22 @@
                 <ul class="list-unstyled">
                   <li>
                     <i class="fas fa-map-marker-alt"></i
-                    ><span class="sr-only">Location:</span>Sudan, Khartoum
+                    ><span class="sr-only">Location:</span>{{myContacts.address}}
                   </li>
                   <li>
                     <i class="fas fa-envelope"></i
                     ><span class="sr-only">Email:</span
-                    ><a>omdasoft@hotmail.com</a>
+                    ><a>{{myContacts.email}}</a>
                   </li>
                   <li>
                     <i class="fas fa-phone"></i
                     ><span class="sr-only">Phone:</span
-                    ><a>+971569180076</a>
+                    ><a>{{myContacts.phone}}</a>
                   </li>
                   <li>
                     <i class="fas fa-external-link-alt"></i>
                     <span class="sr-only">GitHub:</span>
-                    <a href="https://github.com/omdasoft" target="new">https://github.com/omdasoft</a>
+                    <a :href="githubLink" target="new">{{githubLink}}</a>
                   </li>
                 </ul>
               </div>
@@ -222,3 +222,25 @@
         </aside>
     </div>
 </template>
+<script>
+  export default {
+    data(){
+      return{
+        myContacts: {},
+        githubLink: '',
+      };
+    },
+    methods: {
+      getMyContacts(){
+        axios.get('/api/myContacts').then((response) => {
+          this.myContacts = response.data;
+          this.githubLink = this.myContacts.github;
+        });
+      }
+    },
+    mounted(){
+      this.getMyContacts();
+      console.log('component mounted');
+    }
+  }
+</script>

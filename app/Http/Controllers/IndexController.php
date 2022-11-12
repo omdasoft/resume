@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Message;
+use App\Models\Contact;
 class IndexController extends Controller
 {
     public function index(){
@@ -25,9 +26,10 @@ class IndexController extends Controller
         $message->message = $request->message;
         $message->save();
         return response()->json(['success'=>'the message has send seccussfully']);
+  
+    }
 
-
-
-        
+    public function myContacts() {
+        return response()->json(Contact::first());
     }
 }

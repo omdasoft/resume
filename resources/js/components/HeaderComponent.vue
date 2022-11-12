@@ -15,15 +15,12 @@
             <h2 class="desc">Full Stack Developer</h2>
             <ul class="social list-inline">
               <li class="list-inline-item">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://www.linkedin.com/in/emad-aldin-ali-707204174/" target="new"
+                <a :href="linkedinUrl" target="new"
                   ><i class="fab fa-linkedin-in"></i
                 ></a>
               </li>
               <li class="list-inline-item">
-                <a href="https://github.com/omdasoft" target="new"
+                <a :href="githubUrl" target="new"
                   ><i class="fab fa-github-alt"></i
                 ></a>
               </li>
@@ -51,9 +48,25 @@
   </header>
   <!--//header-->
 </template>
-
 <script>
-export default {
-  
-}
+  export default {
+    data(){
+      return{
+        githubUrl: '',
+        linkedinUrl: '',
+      };
+    },
+    methods: {
+      getMyContacts(){
+        axios.get('/api/myContacts').then((response) => {
+          this.githubUrl = response.data.github;
+          this.linkedinUrl = response.data.linkedin;
+        });
+      }
+    },
+    mounted(){
+      this.getMyContacts();
+      console.log('component mounted');
+    }
+  }
 </script>

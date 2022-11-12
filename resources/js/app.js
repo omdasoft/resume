@@ -7,7 +7,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 
 //front components
 Vue.component('header-component', require('./components/HeaderComponent.vue').default);
-Vue.component('sidebar-component', require('./components/sidebarComponent.vue').default);
+Vue.component('sidebar-component', require('./components/SidebarComponent.vue').default);
 Vue.component('footer-component', require('./components/footerComponent.vue').default);
 Vue.component('front-layout-component', require('./layouts/Front.vue').default);
 //dahsboard components
