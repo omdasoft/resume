@@ -21,7 +21,6 @@ class CreateEducationTable extends Migration
             $table->string('specialty');
             $table->date('from');
             $table->date('to');
-            $table->foreignId('user_id')->constrained('users');          
             $table->timestamps();
         });
     }

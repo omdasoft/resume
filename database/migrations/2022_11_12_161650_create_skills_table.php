@@ -17,7 +17,6 @@ class CreateSkillsTable extends Migration
             $table->id();
             $table->string('skill');
             $table->integer('percent');
-            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

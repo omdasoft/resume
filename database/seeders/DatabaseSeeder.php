@@ -20,13 +20,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(1)
-            ->has(Profile::factory(1))
-            ->has(Education::factory(2))
-            ->has(Employment::factory(3)->has(EmploymentDetails::factory(6)))
-            ->has(Skill::factory(5))
-            ->has(Portfolio::factory(5))
-            ->create();
+        User::factory(1)->create();
+        Profile::factory(1);
+        Education::factory(2);
+        Employment::factory(3)->has(EmploymentDetails::factory(6))->create();
+        Skill::factory(5)->create();
+        Portfolio::factory(5)->create();
         Contact::factory(1)->create();
     }
 }

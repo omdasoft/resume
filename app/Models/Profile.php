@@ -20,15 +20,10 @@ class Profile extends Model
         'linkedin_url',
         'title',
         'summary',
-        'photo',
         'cv'
     ];
 
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
-
-    public function image() {
-        return $this->morphOne('App\Models\Image', 'imageable');
+    public function image(){
+        return $this->morphOne(Image::class, 'imageable');
     }
 }

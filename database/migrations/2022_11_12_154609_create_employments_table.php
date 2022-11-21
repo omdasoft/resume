@@ -20,7 +20,6 @@ class CreateEmploymentsTable extends Migration
             $table->string('country');
             $table->date('start_date');
             $table->date('end_date');
-            $table->foreignId('user_id')->constrained('users');
             $table->boolean('until_now')->default(0);
             $table->timestamps();
         });

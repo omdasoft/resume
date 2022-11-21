@@ -19,7 +19,6 @@ class CreatePortfoliosTable extends Migration
             $table->text('summary');
             $table->string('url');
             $table->string('github_url');
-            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

@@ -24,7 +24,6 @@ class CreateProfilesTable extends Migration
             $table->string('title');
             $table->text('summary');
             $table->string('cv');
-            $table->foreignId('user_id')->constrained('users');          
             $table->timestamps();
         });
     }
