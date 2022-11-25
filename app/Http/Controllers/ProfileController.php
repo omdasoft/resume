@@ -18,7 +18,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profile = Profile::get();
+        $profile = Profile::with('image')->first();
 
         return response()->json($profile);
     }

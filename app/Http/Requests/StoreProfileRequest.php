@@ -35,8 +35,8 @@ class StoreProfileRequest extends FormRequest
                 'linkedin_url' => 'required',
                 'title' => 'required',
                 'summary' => 'required',
-                'image' => 'image|mimes:jpg,jpeg,png',
-                'cv' => 'mimes:doc,pdf,docx,zip'
+                'image' => 'exclude_if:link,null|mimes:jpg,jpeg,png',
+                'cv' => 'exclude_if:link,null|mimes:doc,pdf,docx,zip'
             ];        
         }
 
@@ -54,17 +54,16 @@ class StoreProfileRequest extends FormRequest
         ];
     }
 
-    public function failedValidation(Validator $validator) {
+    // public function failedValidation(Validator $validator) {
 
-        throw new HttpResponseException(response()->json([
+    //     throw new HttpResponseException(response()->json([
 
-            'success'   => false,
+    //         'success'   => false,
+    //         'message'   => 'Validation errors',
+    //         'code'      => 402,
+    //         'data'      => $validator->errors()
 
-            'message'   => 'Validation errors',
+    //     ]));
 
-            'data'      => $validator->errors()
-
-        ]));
-
-    }
+    // }
 }
