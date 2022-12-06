@@ -31,7 +31,7 @@ class ProfileController extends Controller
      */
     public function store(StoreProfileRequest $request)
     {
-       
+
         $imageName = $this->uploadFile($request->image);
         $cvName = $this->uploadFile($request->cv);
 
@@ -86,7 +86,7 @@ class ProfileController extends Controller
                 $imageName = $this->uploadFile($request->file('image'));
                 $profile->image->update(['image_name' => $imageName]);
             }
-            
+
             if($request->hasFile('cv')) {
                 if($this->checkIfFileExists($profile->cv)) {
                     $this->deleteFile($profile->cv);
@@ -94,7 +94,7 @@ class ProfileController extends Controller
                  $cvName = $this->uploadFile($request->file('cv'));
                  $profile->cv = $cvName;
             }
-    
+
             $profile->name = $request->name;
             $profile->address = $request->address;
             $profile->email = $request->email;

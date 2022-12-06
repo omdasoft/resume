@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Profile Info</div>
                     <div class="card-body">
@@ -28,9 +28,15 @@
                                         href="#"
                                         data-toggle="modal"
                                         data-target="#viewEditProfile"
-                                        @click="viewEditProfile()"
+                                        @click="addEditProfile(editMode=true)"
                                         ><i class="fa fa-pen"></i
                                     ></a>
+                                    </td>
+                                </tr>
+                                <tr v-if="profileInfo.length === 0">
+                                    <td colspan="6" class="text-center">No Profile Data
+                                        <button class="btn btn-success btn-sm" href="#" data-toggle="modal" data-target="#viewEditProfile" @click="addEditProfile(editMode=false)">
+                                            <i class="fa fa-plus"></i> Create New </button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -52,7 +58,7 @@
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit/view Profile</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Create/Edit Profile</h5>
                         <button
                         type="button"
                         class="close"
@@ -117,7 +123,7 @@
                                         <input type="text" v-model="formData.title" id="title" class="form-control">
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -125,7 +131,7 @@
                                         <textarea rows="10" v-model="formData.summary" id="summary" class="form-control"></textarea>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -134,18 +140,19 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <img :src="imageSrc" width="80" height="80">
+                                    <img v-if="image" :src="imageSrc" width="80" height="80">
                                 </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="cv">Choose Cv</label>
                                         <input type="file" name="cv" class="form-control" id="cv" @change="onCvChange">
-                                        <a :href="cvSrc" target="new">View</a>
+                                        <a v-if="cv" :href="cvSrc" target="new">View</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" @click.prevent="updateMyProfile" class="btn btn-warning">Update</button>
+                                <button v-if="editMode" type="submit" @click.prevent="updateMyProfile()" class="btn btn-warning"><i class="fa fa-pen"></i> update</button>
+                                <button v-else type="submit" @click.prevent="storeMyProfile()" class="btn btn-success"><i class="fa fa-plus"></i> create</button>
                             </div>
                         </form>
                         </div>
@@ -164,14 +171,15 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </template>
 
 <script>
     export default {
         data() {
             return{
-                profileInfo: {},
+                editMode: false,
+                profileInfo: [],
                 formData: {
                     id: "",
                     name:"",
@@ -197,21 +205,24 @@
                     this.profileInfo = response.data;
                 });
             },
-            viewEditProfile() {
-               this.formData.id = this.profileInfo.id;
-               this.formData.name = this.profileInfo.name;
-               this.formData.email = this.profileInfo.email;
-               this.formData.phone = this.profileInfo.phone;
-               this.formData.address = this.profileInfo.address;
-               this.formData.title = this.profileInfo.title;
-               this.formData.summary = this.profileInfo.summary;
-               this.formData.github_url = this.profileInfo.github_url;
-               this.formData.linkedin_url = this.profileInfo.linkedin_url;
+            addEditProfile(editMode) {
+                if(editMode) {
+                    this.formData.id = this.profileInfo.id;
+                    this.formData.name = this.profileInfo.name;
+                    this.formData.email = this.profileInfo.email;
+                    this.formData.phone = this.profileInfo.phone;
+                    this.formData.address = this.profileInfo.address;
+                    this.formData.title = this.profileInfo.title;
+                    this.formData.summary = this.profileInfo.summary;
+                    this.formData.github_url = this.profileInfo.github_url;
+                    this.formData.linkedin_url = this.profileInfo.linkedin_url;
 
-                this.image = this.profileInfo.image.image_name;
-                this.imageSrc = this.path+this.image;
-                this.cv = this.profileInfo.cv;
-                this.cvSrc = this.path+this.cv;
+                    this.image = this.profileInfo.image.image_name;
+                    this.imageSrc = this.path + this.image;
+                    this.cv = this.profileInfo.cv;
+                    this.cvSrc = this.path + this.cv;
+                    this.editMode = true;
+                }
             },
             onImageChange(e){
                 this.image = e.target.files[0];
@@ -233,6 +244,7 @@
                     }
                 }).then((res) => {
                     this.$refs.Close.click();
+                    console.log(res.data);
                     this.getProfileInfo();
                     Toast.fire(
                             "success",
@@ -250,23 +262,37 @@
                         })
                     }
                 });
-            //    _.each(this.formData, (value, key) => {
-            //         formData.append(key, value)
-            //     });
+            },
+            storeMyProfile() {
+                let formData = new FormData();
+                formData.append('image', this.image);
+                formData.append('cv', this.cv);
+                _.each(this.formData, (value, key) => {
+                    formData.append(key, value);
+                });
+                axios.post('/api/profiles/', formData, {
+                    headers: {
+                        'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
+                    }
+                }).then((res) => {
+                    this.$refs.Close.click();
+                    this.getProfileInfo();
+                    Toast.fire(
+                        "success",
+                        "Profile created seccessfully",
+                        "success"
+                    );
 
-                
-                // this.form.put("/api/profiles/"+this.form.id).then((response) => {
-                //     this.$refs.Close.click();
-                //     console.log(response.data);
-                //     this.getProfileInfo();
-                //     Toast.fire(
-                //             "success",
-                //             "Profile has updated seccessfully",
-                //             "success"
-                //         );
-
-                //     //Fire.$emit('AfterUpdateMycontacts');
-                // });
+                }).catch(err => {
+                    if (err.response.status === 422) {
+                        this.errors = []
+                        _.each(err.response.data.errors, error => {
+                            _.each(error, e => {
+                                this.errors.push(e)
+                            })
+                        })
+                    }
+                });
             }
         },
         mounted() {

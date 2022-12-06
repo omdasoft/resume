@@ -12,4 +12,8 @@ class EmploymentDetails extends Model
     protected $fillable = [
         'desc'
     ];
+
+    public function employment() {
+        return $this->belongsTo(Employment::class);
+    }
 }

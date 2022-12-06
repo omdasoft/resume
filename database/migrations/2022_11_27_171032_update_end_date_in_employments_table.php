@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmploymentDetailsTable extends Migration
+class UpdateEndDateInEmploymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateEmploymentDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('employment_details', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('employment_id')->constrained('employments')->onDelete('cascade');
-            $table->text('desc');
-            $table->timestamps();
+        Schema::table('employments', function (Blueprint $table) {
+            $table->string('end_date')->nullable()->change();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateEmploymentDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employment_details');
+        Schema::table('employments', function (Blueprint $table) {
+            //
+        });
     }
 }

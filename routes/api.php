@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EmploymentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ContactController;
 /*
@@ -27,6 +28,7 @@ Route::get('/delete_message',[MessageController::class,'delete']);
 Route::get('/dashboard/myContacts', [ContactController::class, 'index']);
 Route::put('/dashboard/myContacts/{id}', [ContactController::class, 'update']);
 Route::apiResource('profiles', ProfileController::class);
+Route::apiResource('employments', EmploymentController::class);
 
 //fornend apis
 Route::get('/myContacts', [\App\Http\Controllers\IndexController::class, 'myContacts']);

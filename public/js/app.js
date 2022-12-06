@@ -2859,10 +2859,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      profileInfo: {},
+      editMode: false,
+      profileInfo: [],
       formData: {
         id: "",
         name: "",
@@ -2890,20 +2898,23 @@ __webpack_require__.r(__webpack_exports__);
         _this.profileInfo = response.data;
       });
     },
-    viewEditProfile: function viewEditProfile() {
-      this.formData.id = this.profileInfo.id;
-      this.formData.name = this.profileInfo.name;
-      this.formData.email = this.profileInfo.email;
-      this.formData.phone = this.profileInfo.phone;
-      this.formData.address = this.profileInfo.address;
-      this.formData.title = this.profileInfo.title;
-      this.formData.summary = this.profileInfo.summary;
-      this.formData.github_url = this.profileInfo.github_url;
-      this.formData.linkedin_url = this.profileInfo.linkedin_url;
-      this.image = this.profileInfo.image.image_name;
-      this.imageSrc = this.path + this.image;
-      this.cv = this.profileInfo.cv;
-      this.cvSrc = this.path + this.cv;
+    addEditProfile: function addEditProfile(editMode) {
+      if (editMode) {
+        this.formData.id = this.profileInfo.id;
+        this.formData.name = this.profileInfo.name;
+        this.formData.email = this.profileInfo.email;
+        this.formData.phone = this.profileInfo.phone;
+        this.formData.address = this.profileInfo.address;
+        this.formData.title = this.profileInfo.title;
+        this.formData.summary = this.profileInfo.summary;
+        this.formData.github_url = this.profileInfo.github_url;
+        this.formData.linkedin_url = this.profileInfo.linkedin_url;
+        this.image = this.profileInfo.image.image_name;
+        this.imageSrc = this.path + this.image;
+        this.cv = this.profileInfo.cv;
+        this.cvSrc = this.path + this.cv;
+        this.editMode = true;
+      }
     },
     onImageChange: function onImageChange(e) {
       this.image = e.target.files[0];
@@ -2930,6 +2941,8 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         _this2.$refs.Close.click();
 
+        console.log(res.data);
+
         _this2.getProfileInfo();
 
         Toast.fire("success", "Profile has updated seccessfully", "success");
@@ -2943,20 +2956,40 @@ __webpack_require__.r(__webpack_exports__);
             });
           });
         }
-      }); //    _.each(this.formData, (value, key) => {
-      //         formData.append(key, value)
-      //     });
-      // this.form.put("/api/profiles/"+this.form.id).then((response) => {
-      //     this.$refs.Close.click();
-      //     console.log(response.data);
-      //     this.getProfileInfo();
-      //     Toast.fire(
-      //             "success",
-      //             "Profile has updated seccessfully",
-      //             "success"
-      //         );
-      //     //Fire.$emit('AfterUpdateMycontacts');
-      // });
+      });
+    },
+    storeMyProfile: function storeMyProfile() {
+      var _this3 = this;
+
+      var formData = new FormData();
+      formData.append('image', this.image);
+      formData.append('cv', this.cv);
+
+      _.each(this.formData, function (value, key) {
+        formData.append(key, value);
+      });
+
+      axios.post('/api/profiles/', formData, {
+        headers: {
+          'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
+        }
+      }).then(function (res) {
+        _this3.$refs.Close.click();
+
+        _this3.getProfileInfo();
+
+        Toast.fire("success", "Profile created seccessfully", "success");
+      })["catch"](function (err) {
+        if (err.response.status === 422) {
+          _this3.errors = [];
+
+          _.each(err.response.data.errors, function (error) {
+            _.each(error, function (e) {
+              _this3.errors.push(e);
+            });
+          });
+        }
+      });
     }
   },
   mounted: function mounted() {
@@ -46793,7 +46826,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-10" }, [
+      _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [_vm._v("Profile Info")]),
           _vm._v(" "),
@@ -46829,14 +46862,53 @@ var render = function() {
                             },
                             on: {
                               click: function($event) {
-                                return _vm.viewEditProfile()
+                                return _vm.addEditProfile((_vm.editMode = true))
                               }
                             }
                           },
                           [_c("i", { staticClass: "fa fa-pen" })]
                         )
                       ])
-                    ])
+                    ]),
+                    _vm._v(" "),
+                    _vm.profileInfo.length === 0
+                      ? _c("tr", [
+                          _c(
+                            "td",
+                            {
+                              staticClass: "text-center",
+                              attrs: { colspan: "6" }
+                            },
+                            [
+                              _vm._v(
+                                "No Profile Data\n                                    "
+                              ),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-success btn-sm",
+                                  attrs: {
+                                    href: "#",
+                                    "data-toggle": "modal",
+                                    "data-target": "#viewEditProfile"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.addEditProfile(
+                                        (_vm.editMode = false)
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", { staticClass: "fa fa-plus" }),
+                                  _vm._v(" Create New ")
+                                ]
+                              )
+                            ]
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 ]
               )
@@ -47190,13 +47262,15 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-4" }, [
-                            _c("img", {
-                              attrs: {
-                                src: _vm.imageSrc,
-                                width: "80",
-                                height: "80"
-                              }
-                            })
+                            _vm.image
+                              ? _c("img", {
+                                  attrs: {
+                                    src: _vm.imageSrc,
+                                    width: "80",
+                                    height: "80"
+                                  }
+                                })
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-4" }, [
@@ -47211,30 +47285,55 @@ var render = function() {
                                 on: { change: _vm.onCvChange }
                               }),
                               _vm._v(" "),
-                              _c(
-                                "a",
-                                { attrs: { href: _vm.cvSrc, target: "new" } },
-                                [_vm._v("View")]
-                              )
+                              _vm.cv
+                                ? _c(
+                                    "a",
+                                    {
+                                      attrs: { href: _vm.cvSrc, target: "new" }
+                                    },
+                                    [_vm._v("View")]
+                                  )
+                                : _vm._e()
                             ])
                           ])
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-warning",
-                              attrs: { type: "submit" },
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  return _vm.updateMyProfile($event)
-                                }
-                              }
-                            },
-                            [_vm._v("Update")]
-                          )
+                          _vm.editMode
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-warning",
+                                  attrs: { type: "submit" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.updateMyProfile()
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", { staticClass: "fa fa-pen" }),
+                                  _vm._v(" update")
+                                ]
+                              )
+                            : _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-success",
+                                  attrs: { type: "submit" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.storeMyProfile()
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", { staticClass: "fa fa-plus" }),
+                                  _vm._v(" create")
+                                ]
+                              )
                         ])
                       ])
                     ])
@@ -47287,7 +47386,7 @@ var staticRenderFns = [
       _c(
         "h5",
         { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("Edit/view Profile")]
+        [_vm._v("Create/Edit Profile")]
       ),
       _vm._v(" "),
       _c(
