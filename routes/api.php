@@ -6,16 +6,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmploymentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ContactController;
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+use App\Http\Controllers\PortfolioController;
+
 /*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -29,6 +21,7 @@ Route::get('/dashboard/myContacts', [ContactController::class, 'index']);
 Route::put('/dashboard/myContacts/{id}', [ContactController::class, 'update']);
 Route::apiResource('profiles', ProfileController::class);
 Route::apiResource('employments', EmploymentController::class);
+Route::apiResource('portfolios', PortfolioController::class);
 
-//fornend apis
+//front end apis
 Route::get('/myContacts', [\App\Http\Controllers\IndexController::class, 'myContacts']);

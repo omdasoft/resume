@@ -16,7 +16,7 @@ class Portfolio extends Model
         'github_url'
     ];
 
-    public function images() {
-        return $this->morphMany('App\Models\Image', 'imageable');
+    public function image() {
+        return $this->morphOne('App\Models\Image', 'imageable');
     }
 }

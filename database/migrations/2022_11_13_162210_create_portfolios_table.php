@@ -18,7 +18,7 @@ class CreatePortfoliosTable extends Migration
             $table->text('title');
             $table->text('summary');
             $table->string('url');
-            $table->string('github_url');
+            $table->string('github_url')->nullable();
             $table->timestamps();
         });
     }
