@@ -10,11 +10,7 @@ class Skill extends Model
     use HasFactory;
 
     protected $fillable = [
-        'skill',
-        'percent'
+        'title',
+        'percentage'
     ];
-
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
 }

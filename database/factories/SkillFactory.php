@@ -22,8 +22,8 @@ class SkillFactory extends Factory
     public function definition()
     {
         return [
-            'skill' => $this->faker->text(10),
-            'percent' => $this->faker->randomDigit(2),             
+            'title' => $this->faker->text(10),
+            'percentage' => $this->faker->randomDigit(2),
         ];
     }
 }

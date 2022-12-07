@@ -16,8 +16,4 @@ class Education extends Model
         'from',
         'to',
     ];
-    
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
 }
