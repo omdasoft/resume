@@ -29,22 +29,24 @@ class EmploymentController extends Controller
      */
     public function store(StoreEmploymentRequest $request)
     {
-        $employment = new Employment;
-        $employment->designation = $request->designation;
-        $employment->company = $request->company;
-        $employment->start_date = $request->start_date;
-        $employment->end_date = $request->end_date;
-        $employment->until_now = $request->until_now;
-        $employment->country = $request->country;
-        $employment->save();
-        $employmentDetails = $request->get('employment_details');
-        foreach($employmentDetails as $d) {
-            $details = new EmploymentDetails;
-            $details->desc = $d['desc'];
-            $employment->employmentDetails()->save($details);
-        }
-        $message = 'Employment created successfully';
-        return response()->json($message, 200);
+        return DB::transaction(function() use ($request) {
+            $employment = new Employment;
+            $employment->designation = $request->designation;
+            $employment->company = $request->company;
+            $employment->start_date = $request->start_date;
+            $employment->end_date = $request->end_date;
+            $employment->until_now = $request->until_now;
+            $employment->country = $request->country;
+            $employment->save();
+            $employmentDetails = $request->get('employment_details');
+            foreach($employmentDetails as $d) {
+                $details = new EmploymentDetails;
+                $details->desc = $d['desc'];
+                $employment->employmentDetails()->save($details);
+            }
+            $message = 'Employment created successfully';
+            return response()->json($message, 200);
+        });
     }
 
     /**
