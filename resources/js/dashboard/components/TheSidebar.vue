@@ -40,6 +40,14 @@
                 </p>
                 </router-link>
             </li>
+            <li class="nav-item">
+                <router-link to="/dashboard/employment" class="nav-link">
+                    <i class="nav-icon fa fa-bullseye"></i>
+                    <p>
+                        Employment
+                    </p>
+                </router-link>
+            </li>
              <li class="nav-item">
                 <router-link to="/dashboard/mycontacts" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
@@ -94,7 +102,7 @@
     export default {
         data: () => ({
              csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-             }),   
+             }),
         methods:{
             logout:function(){
                axios.post('logout').then(response => {

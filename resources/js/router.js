@@ -6,17 +6,18 @@ import Main from './pages/index.vue';
 import Contact from './pages/contact.vue';
 import Posts from './pages/posts.vue';
 
-//import dashboard pages 
+//import dashboard pages
 import Dashboard from './dashboard/pages/dashboard.vue';
 import Message from './dashboard/pages/message.vue';
 import Profile from './dashboard/pages/profile.vue';
 import MyContacts from './dashboard/pages/myContact.vue';
+import Employment from './dashboard/pages/employment';
 
 Vue.use(VueRouter);
 const router = new VueRouter({
     mode: 'history',
     linkExactActiveClass: 'active',
-    
+
     routes: [
         {
             path: '/',
@@ -49,13 +50,18 @@ const router = new VueRouter({
             component: Profile
         },
         {
+            path: '/dashboard/employment',
+            name: 'employment',
+            component: Employment
+        },
+        {
             path: '/dashboard/myContacts',
             name:'mycontacts',
             component: MyContacts
         }
 
     ]
-    
+
 });
 
 export default router;

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Employment;
 use App\Models\EmploymentDetails;
 use App\Http\Requests\StoreEmploymentRequest;
+use DB;
 class EmploymentController extends Controller
 {
     /**
@@ -36,9 +37,10 @@ class EmploymentController extends Controller
         $employment->until_now = $request->until_now;
         $employment->country = $request->country;
         $employment->save();
-        foreach($request->details as $detail) {
+        $employmentDetails = $request->get('employment_details');
+        foreach($employmentDetails as $d) {
             $details = new EmploymentDetails;
-            $details->desc = $detail;
+            $details->desc = $d['desc'];
             $employment->employmentDetails()->save($details);
         }
         $message = 'Employment created successfully';
@@ -67,17 +69,28 @@ class EmploymentController extends Controller
      */
     public function update(StoreEmploymentRequest $request, $id)
     {
-        $employment = Employment::findOrFail($id);
-        $employment->designation = $request->designation;
-        $employment->company = $request->company;
-        $employment->start_date = $request->start_date;
-        $employment->end_date = $request->end_date;
-        $employment->until_now = $request->until_now;
-        $employment->country = $request->country;
-        $employment->save();
-
-        $message = 'Employment Updated successfully';
-        return response()->json($message, 200);
+        return DB::transaction(function() use($request, $id){
+            $employment = Employment::findOrFail($id);
+            $employment->designation = $request->designation;
+            $employment->company = $request->company;
+            $employment->start_date = $request->start_date;
+            $employment->end_date = $request->end_date;
+            $employment->until_now = $request->until_now;
+            $employment->country = $request->country;
+            $employment->save();
+            $details = $request->get('employment_details');
+            if(!empty($details)) {
+                foreach ($details as $detail) {
+                    $empDetail = EmploymentDetails::findOrFail($detail['id']);
+                    $empDetail->employment_id = $detail['employment_id'];
+                    $empDetail->desc = $detail['desc'];
+                    $empDetail->update();
+                }
+            }
+            //return response()->json($employmentDetails);
+            $message = 'Employment Updated successfully';
+            return response()->json($message, 200);
+        });
     }
 
     /**

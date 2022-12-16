@@ -31,19 +31,20 @@ class StoreEmploymentRequest extends FormRequest
             'country' => 'required',
             'start_date' => 'required',
             'end_date' => 'required_if:until_now,==,null',
+            'employment_details.*.desc' => 'required'
             //'until_now' => 'required_if:end_date,==,null'
         ];
     }
 
-     public function failedValidation(Validator $validator) {
-
-        throw new HttpResponseException(response()->json([
-
-            'success'   => false,
-            'message'   => 'Validation errors',
-            'code'      => 402,
-            'data'      => $validator->errors()
-
-        ]));
-    }
+//     public function failedValidation(Validator $validator) {
+//
+//        throw new HttpResponseException(response()->json([
+//
+//            'success'   => false,
+//            'message'   => 'Validation errors',
+//            'code'      => 402,
+//            'data'      => $validator->errors()
+//
+//        ]));
+//    }
 }

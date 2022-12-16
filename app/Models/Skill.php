@@ -13,4 +13,14 @@ class Skill extends Model
         'title',
         'percentage'
     ];
+
+    //protected $appends = ['date'];
+
+//    public function getDateAttribute() {
+//        return $this->created_at->diffForHumans();
+//    }
+
+    public function getTitleAttribute($value) {
+        return $this->title = ucfirst($value);
+    }
 }
