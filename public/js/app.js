@@ -2521,75 +2521,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2606,13 +2537,10 @@ __webpack_require__.r(__webpack_exports__);
         end_date: "",
         until_now: "",
         employment_details: [{
-          desc: ""
+          id: "",
+          desc: "",
+          employment_id: ""
         }]
-      }),
-      detailsFormData: new Form({
-        id: "",
-        employment_id: "",
-        desc: ""
       }),
       errors: ""
     };
@@ -2628,10 +2556,13 @@ __webpack_require__.r(__webpack_exports__);
     editEmploymentModal: function editEmploymentModal(employment) {
       this.formData.fill(employment);
       this.editMode = true;
+      this.errors = "";
+      this.disableEndDateField = this.formData.until_now === 1 ? true : false;
     },
     createEmploymentModal: function createEmploymentModal() {
       this.formData.reset();
       this.editMode = false;
+      this.errors = "";
       this.disableEndDateField = this.formData.until_now === 1 ? true : false;
     },
     storeEmployment: function storeEmployment() {
@@ -2659,11 +2590,22 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       this.formData.put('/api/employments/' + this.formData.id).then(function (res) {
+        //console.log(res.data);
         _this3.$refs.Close.click();
 
         _this3.getEmploymentData();
 
         Toast.fire("success", "Employment has updated seccessfully", "success");
+      })["catch"](function (err) {
+        if (err.response.status === 422) {
+          _this3.errors = [];
+
+          _.each(err.response.data.errors, function (error) {
+            _.each(error, function (e) {
+              _this3.errors.push(e);
+            });
+          });
+        }
       });
     },
     untilNowFieldChange: function untilNowFieldChange() {
@@ -2684,39 +2626,27 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
-    createEditEmploymentDetails: function createEditEmploymentDetails(details) {
-      this.detailsFormData = details;
-    },
     addNewDetail: function addNewDetail() {
       this.formData.employment_details.push({
-        desc: ""
+        id: "",
+        desc: "",
+        employment_id: ""
       });
     },
     removeDetail: function removeDetail(index) {
       this.formData.employment_details.splice(index, 1);
     },
-    updateEmploymentDetails: function updateEmploymentDetails(detail) {
-      var _this5 = this;
-
-      axios.put('/api/details/' + detail.id, {
-        detail: detail
-      }).then(function (res) {
-        _this5.getEmploymentData();
-
-        Toast.fire("success", "Employment details updated seccessfully", "success");
-      });
-    },
     deleteEmploymentDetails: function deleteEmploymentDetails(id) {
-      var _this6 = this;
+      var _this5 = this;
 
       if (confirm("are you sure you want to delete this record ?")) {
         var detailId = id;
         axios["delete"]('/api/details/' + id).then(function (res) {
-          var index = _this6.detailsFormData.map(function (detail) {
+          var index = _this5.formData.employment_details.map(function (detail) {
             return detail.id;
           }).indexOf(detailId);
 
-          _this6.detailsFormData.splice(index, 1);
+          _this5.formData.employment_details.splice(index, 1);
 
           Toast.fire("success", "Employment details deleted seccessfully", "success");
         });
@@ -46740,26 +46670,6 @@ var render = function() {
                             _c(
                               "a",
                               {
-                                staticClass: "btn btn-success btn-sm",
-                                attrs: {
-                                  href: "#",
-                                  "data-toggle": "modal",
-                                  "data-target": "#createEditEmploymentDetails"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.createEditEmploymentDetails(
-                                      employment.employment_details
-                                    )
-                                  }
-                                }
-                              },
-                              [_vm._v("view details ")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
                                 staticClass: "btn btn-warning btn-sm",
                                 attrs: {
                                   href: "#",
@@ -47133,7 +47043,7 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("h3", [_vm._v("Add Details")]),
+                    _c("h3", [_vm._v("Manage Details")]),
                     _vm._v(" "),
                     _c("hr"),
                     _vm._v(" "),
@@ -47200,6 +47110,31 @@ var render = function() {
                                     }
                                   },
                                   [_c("i", { staticClass: "fa fa-minus" })]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "show",
+                                        rawName: "v-show",
+                                        value: _vm.editMode,
+                                        expression: "editMode"
+                                      }
+                                    ],
+                                    staticClass: "btn btn-sm btn-danger",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.deleteEmploymentDetails(
+                                          detail.id
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_c("i", { staticClass: "fa fa-trash" })]
                                 )
                               ]
                             )
@@ -47208,14 +47143,6 @@ var render = function() {
                           _c(
                             "button",
                             {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: !_vm.editMode,
-                                  expression: "!editMode"
-                                }
-                              ],
                               staticClass: "btn btn-sm btn-dark",
                               on: {
                                 click: function($event) {
@@ -47289,132 +47216,6 @@ var render = function() {
           ]
         )
       ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "createEditEmploymentDetails",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "exampleModalLabel",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "modal-dialog modal-xl", attrs: { role: "document" } },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(2),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c("div", { staticClass: "table-responsive" }, [
-                  _c("table", { staticClass: "table table-bordered" }, [
-                    _vm._m(3),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.detailsFormData, function(detail) {
-                        return _c("tr", { key: detail.id }, [
-                          _c("td", [
-                            _c(
-                              "form",
-                              {
-                                attrs: { method: "post" },
-                                on: {
-                                  submit: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.updateEmploymentDetails(detail)
-                                  }
-                                }
-                              },
-                              [
-                                _c("textarea", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: detail.desc,
-                                      expression: "detail.desc"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: { cols: "5" },
-                                  domProps: { value: detail.desc },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        detail,
-                                        "desc",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-success mt-2",
-                                    attrs: { type: "submit" }
-                                  },
-                                  [_vm._v("Update")]
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "btn btn-danger btn-sm",
-                                attrs: { href: "#" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.deleteEmploymentDetails(
-                                      detail.id
-                                    )
-                                  }
-                                }
-                              },
-                              [_c("i", { staticClass: "fa fa-trash" })]
-                            )
-                          ])
-                        ])
-                      }),
-                      0
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    ref: "detailsColse",
-                    staticClass: "btn btn-secondary",
-                    attrs: { type: "button", "data-dismiss": "modal" }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        Close\n                    "
-                    )
-                  ]
-                )
-              ])
-            ])
-          ]
-        )
-      ]
     )
   ])
 }
@@ -47460,41 +47261,6 @@ var staticRenderFns = [
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("Create/Edit Employment Details")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("th", [_vm._v("description")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("#")])
     ])
   }
 ]

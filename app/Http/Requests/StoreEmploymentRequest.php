@@ -35,16 +35,4 @@ class StoreEmploymentRequest extends FormRequest
             //'until_now' => 'required_if:end_date,==,null'
         ];
     }
-
-//     public function failedValidation(Validator $validator) {
-//
-//        throw new HttpResponseException(response()->json([
-//
-//            'success'   => false,
-//            'message'   => 'Validation errors',
-//            'code'      => 402,
-//            'data'      => $validator->errors()
-//
-//        ]));
-//    }
 }

@@ -83,13 +83,13 @@ class EmploymentController extends Controller
             $details = $request->get('employment_details');
             if(!empty($details)) {
                 foreach ($details as $detail) {
-                    $empDetail = EmploymentDetails::findOrFail($detail['id']);
-                    $empDetail->employment_id = $detail['employment_id'];
-                    $empDetail->desc = $detail['desc'];
-                    $empDetail->update();
+                    $employmentDetails = $employment->employmentDetails()->updateOrCreate([
+                        'id' => $detail['id'],
+                    ], [
+                        'desc' => $detail['desc'],
+                    ]);
                 }
             }
-            //return response()->json($employmentDetails);
             $message = 'Employment Updated successfully';
             return response()->json($message, 200);
         });

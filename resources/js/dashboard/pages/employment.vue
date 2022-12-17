@@ -27,13 +27,6 @@
                                     </td>
                                     <td>
                                         <a
-                                            class="btn btn-success btn-sm"
-                                            href="#"
-                                            data-toggle="modal"
-                                            data-target="#createEditEmploymentDetails"
-                                            @click="createEditEmploymentDetails(employment.employment_details)"
-                                        >view details </a>
-                                        <a
                                             class="btn btn-warning btn-sm"
                                             href="#"
                                             data-toggle="modal"
@@ -133,15 +126,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <h3>Add Details</h3>
+                            <h3>Manage Details</h3>
                             <hr></hr>
                             <div class="row mb-3">
                                 <div class="col-md-12">
                                     <div v-for="(detail, index) in formData.employment_details" class="d-flex justify-content-between mb-3">
                                         <textarea class="form-control mr-2" cols="5" name="desc[]" v-model="detail.desc" ></textarea>
-                                        <button type="button" class="btn btn-sm btn-danger" v-show="!editMode" @click.prevent="removeDetail(index)"><i class="fa fa-minus"></i> </button>
+                                        <button type="button" v-show="!editMode" class="btn btn-sm btn-danger" @click.prevent="removeDetail(index)"><i class="fa fa-minus"></i> </button>
+                                        <button type="button" v-show="editMode" class="btn btn-sm btn-danger" @click.prevent="deleteEmploymentDetails(detail.id)"><i class="fa fa-trash"></i> </button>
                                     </div>
-                                    <button class="btn btn-sm btn-dark" v-show="!editMode" @click.prevent="addNewDetail()"><i class="fa fa-plus"></i></button>
+                                    <button class="btn btn-sm btn-dark" @click.prevent="addNewDetail()"><i class="fa fa-plus"></i></button>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -153,69 +147,6 @@
                     <div class="modal-footer">
                         <button
                             ref="Close"
-                            type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
-                        >
-                            Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- create/edit employment details modal -->
-        <div
-            class="modal fade"
-            id="createEditEmploymentDetails"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-        >
-            <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Create/Edit Employment Details</h5>
-                        <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                        >
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="table-responsive">
-                                <table class="table table-bordered">
-                                <thead>
-                                    <th>description</th>
-                                    <th>#</th>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="detail in detailsFormData" :key="detail.id">
-                                        <td>
-                                            <form @submit.prevent="updateEmploymentDetails(detail)" method="post">
-                                                <textarea class="form-control" cols="5" v-model="detail.desc" ></textarea>
-                                                <button type="submit" class="btn btn-success mt-2">Update</button>
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <a
-                                                class="btn btn-danger btn-sm"
-                                                href="#"
-                                                @click="deleteEmploymentDetails(detail.id)"
-                                            ><i class="fa fa-trash"></i
-                                            ></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button
-                            ref="detailsColse"
                             type="button"
                             class="btn btn-secondary"
                             data-dismiss="modal"
@@ -244,12 +175,11 @@
                     start_date:"",
                     end_date:"",
                     until_now:"",
-                    employment_details:[{desc:""}]
-                }),
-                detailsFormData: new Form({
-                   id:"",
-                   employment_id:"",
-                   desc:""
+                    employment_details:[{
+                        id:"",
+                        desc:"",
+                        employment_id:""
+                    }]
                 }),
                 errors:""
             }
@@ -263,10 +193,13 @@
             editEmploymentModal(employment) {
                 this.formData.fill(employment);
                 this.editMode = true;
+                this.errors = "";
+                this.disableEndDateField = (this.formData.until_now === 1?true:false);
             },
             createEmploymentModal() {
                 this.formData.reset();
                 this.editMode = false;
+                this.errors = "";
                 this.disableEndDateField = (this.formData.until_now === 1?true:false);
             },
             storeEmployment() {
@@ -291,6 +224,7 @@
             },
             updateEmployment() {
                 this.formData.put('/api/employments/'+this.formData.id).then((res) => {
+                    //console.log(res.data);
                     this.$refs.Close.click();
                     this.getEmploymentData();
                     Toast.fire(
@@ -298,6 +232,15 @@
                         "Employment has updated seccessfully",
                         "success"
                     );
+                }).catch(err => {
+                    if (err.response.status === 422) {
+                        this.errors = []
+                        _.each(err.response.data.errors, error => {
+                            _.each(error, e => {
+                                this.errors.push(e)
+                            })
+                        })
+                    }
                 });
             },
             untilNowFieldChange() {
@@ -315,35 +258,24 @@
                     });
                 }
             },
-            createEditEmploymentDetails(details) {
-                this.detailsFormData = details;
-            },
             addNewDetail() {
-              this.formData.employment_details.push({desc:""});
+              this.formData.employment_details.push({
+                  id:"",
+                  desc:"",
+                  employment_id:""
+              });
             },
             removeDetail(index) {
                 this.formData.employment_details.splice(index, 1);
-            },
-            updateEmploymentDetails(detail) {
-                axios.put('/api/details/'+detail.id, {
-                    detail: detail
-                }).then((res) => {
-                    this.getEmploymentData();
-                    Toast.fire(
-                        "success",
-                        "Employment details updated seccessfully",
-                        "success"
-                    );
-                });
             },
             deleteEmploymentDetails(id) {
                 if(confirm("are you sure you want to delete this record ?")) {
                     var detailId = id;
                     axios.delete('/api/details/'+id).then((res) => {
-                        var index = this.detailsFormData.map(function(detail) {
+                        var index = this.formData.employment_details.map(function(detail) {
                             return detail.id;
                         }).indexOf(detailId);
-                        this.detailsFormData.splice(index, 1);
+                        this.formData.employment_details.splice(index, 1);
                             Toast.fire(
                             "success",
                             "Employment details deleted seccessfully",
