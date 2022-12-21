@@ -42,7 +42,7 @@ class PortfolioController extends Controller
             $image->image_name = $this->uploadFile($request->image);
             $portfolio->image()->save($image);
             $message = "portfolio created successfully";
-            return response()->json($message, 200);
+            return response()->json($message, 201);
         });
     }
 
@@ -67,21 +67,29 @@ class PortfolioController extends Controller
      */
     public function update(StorePortfolioRequest $request, $id)
     {
-        return DB::transaction(function () use ($request, $id) {
+        return DB::transaction(function() use($request, $id){
+            $oldImage = "";
             $portfolio = Portfolio::with('image')->findOrFail($id);
-            $image = $portfolio->image->image_name;
-            if($request->hasFile('image')) {
-                if($this->checkIfFileExists($image)) {
-                    $this->deleteFile($image);
-                }
-                $imageName = $this->uploadFile($request->file('image'));
-                $portfolio->image->update(['image_name' => $imageName]);
+            if($portfolio->image != null) {
+                $oldImage = $portfolio->image->image_name;
             }
+
             $portfolio->title = $request->title;
             $portfolio->summary = $request->summary;
             $portfolio->url = $request->url;
             $portfolio->github_url = $request->github_url;
             $portfolio->save();
+
+            if($request->hasFile('image')) {
+                if($oldImage && $this->checkIfFileExists($oldImage)) {
+                    $this->deleteFile($oldImage);
+                }
+                $imageName = $this->uploadFile($request->file('image'));
+                $portfolio->image()->updateOrCreate(
+                    ['imageable_type' => 'App\Models\Portfolio','imageable_id' => $portfolio->id],
+                    ['image_name' => $imageName]
+                );
+            }
             $message = "portfolio updated successfully";
             return response()->json($message, 200);
         });
@@ -96,13 +104,14 @@ class PortfolioController extends Controller
     public function destroy($id)
     {
         return DB::transaction(function() use ($id) {
-            $portfolio = Portfolio::findOrFail($id);
-            $image = $portfolio->image->image_name;
-            if($this->checkIfFileExists($image)) {
-                $this->deleteFile($image);
+            $portfolio = Portfolio::with('image')->findOrFail($id);
+            if($portfolio->image) {
+                if($this->checkIfFileExists($portfolio->image->image_name)) {
+                    $this->deleteFile($portfolio->image->image_name);
+                }
             }
-            $portfolio->delete();
 
+            $portfolio->delete();
             $message = "portfolio deleted successfully";
             return response()->json($message, 200);
         });

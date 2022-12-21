@@ -25,12 +25,4 @@ class Employment extends Model
     public function employmentDetails () {
         return $this->hasMany(EmploymentDetails::class);
     }
-
-//    public function setEndDateAttribute($value) {
-//        if($this->attributes['until_now'] == 1) {
-//            $this->attributes['end_date'] = "";
-//        }else{
-//            $this->attributes['end_date'] = $value;
-//        }
-//    }
 }

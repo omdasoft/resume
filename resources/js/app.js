@@ -21,7 +21,7 @@ import { Form, HasError, AlertError } from 'vform';
 window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
-
+window.Fire = new Vue();
 //import sweet alert
 import Swal from 'sweetalert2'
 window.Swal = Swal

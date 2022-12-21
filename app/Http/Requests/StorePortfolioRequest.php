@@ -41,17 +41,4 @@ class StorePortfolioRequest extends FormRequest
             'image' => 'required|image|mimes:jpg,jpeg,png',
         ];
     }
-
-     public function failedValidation(Validator $validator) {
-
-         throw new HttpResponseException(response()->json([
-
-             'success'   => false,
-             'message'   => 'Validation errors',
-             'code'      => 402,
-             'data'      => $validator->errors()
-
-         ]));
-
-     }
 }
