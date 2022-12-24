@@ -13,7 +13,7 @@ import Profile from './dashboard/pages/profile.vue';
 import MyContacts from './dashboard/pages/myContact.vue';
 import Employment from './dashboard/pages/employment';
 import DashboardPortfolio from './dashboard/pages/dashboardPortfolio'
-
+import DashboardEducation from './dashboard/pages/dashboardEducation'
 
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -60,6 +60,11 @@ const router = new VueRouter({
           path: '/dashboard/portfolio',
           name: 'portfolio',
           component: DashboardPortfolio
+        },
+        {
+            path: '/dashboard/education',
+            name: 'education',
+            component: DashboardEducation
         },
         {
             path: '/dashboard/myContacts',

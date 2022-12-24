@@ -35,15 +35,15 @@ class StoreEducationRequest extends FormRequest
         ];
     }
 
-    public function failedValidation(Validator $validator) {
-
-        throw new HttpResponseException(response()->json([
-
-            'success'   => false,
-            'message'   => 'Validation errors',
-            'code'      => 402,
-            'data'      => $validator->errors()
-
-        ]));
-    }
+//    public function failedValidation(Validator $validator) {
+//
+//        throw new HttpResponseException(response()->json([
+//
+//            'success'   => false,
+//            'message'   => 'Validation errors',
+//            'code'      => 402,
+//            'data'      => $validator->errors()
+//
+//        ]));
+//    }
 }

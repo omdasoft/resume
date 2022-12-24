@@ -56,6 +56,14 @@
                     </p>
                 </router-link>
             </li>
+            <li class="nav-item">
+                <router-link to="/dashboard/education" class="nav-link">
+                    <i class="nav-icon fa fa-graduation-cap"></i>
+                    <p>
+                        Education
+                    </p>
+                </router-link>
+            </li>
              <li class="nav-item">
                 <router-link to="/dashboard/mycontacts" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
