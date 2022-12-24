@@ -64,7 +64,15 @@
                     </p>
                 </router-link>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
+                <router-link to="/dashboard/skills" class="nav-link">
+                    <i class="nav-icon fa fa-tags"></i>
+                    <p>
+                        Skills
+                    </p>
+                </router-link>
+            </li>
+            <li class="nav-item">
                 <router-link to="/dashboard/mycontacts" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
                 <p>

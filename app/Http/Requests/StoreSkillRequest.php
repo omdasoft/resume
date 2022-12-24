@@ -30,16 +30,4 @@ class StoreSkillRequest extends FormRequest
             'percentage' => 'required'
         ];
     }
-
-    public function failedValidation(Validator $validator) {
-
-        throw new HttpResponseException(response()->json([
-
-            'success'   => false,
-            'message'   => 'Validation errors',
-            'code'      => 402,
-            'data'      => $validator->errors()
-
-        ]));
-    }
 }

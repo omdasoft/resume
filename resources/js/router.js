@@ -14,6 +14,7 @@ import MyContacts from './dashboard/pages/myContact.vue';
 import Employment from './dashboard/pages/employment';
 import DashboardPortfolio from './dashboard/pages/dashboardPortfolio'
 import DashboardEducation from './dashboard/pages/dashboardEducation'
+import Skills from './dashboard/pages/skills';
 
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -65,6 +66,11 @@ const router = new VueRouter({
             path: '/dashboard/education',
             name: 'education',
             component: DashboardEducation
+        },
+        {
+            path: '/dashboard/skills',
+            name: 'skills',
+            component: Skills
         },
         {
             path: '/dashboard/myContacts',
