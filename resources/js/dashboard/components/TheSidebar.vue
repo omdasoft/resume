@@ -73,37 +73,12 @@
                 </router-link>
             </li>
             <li class="nav-item">
-                <router-link to="/dashboard/mycontacts" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
-                <p>
-                    Contacts
-                </p>
-                </router-link>
-            </li>
-            <li class="nav-item">
                 <router-link to="/dashboard/message" class="nav-link">
                 <i class="nav-icon fas fa-envelope"></i>
                 <p>
                     Messages
                 </p>
                 </router-link>
-            </li>
-            <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-cog"></i>
-                <p>
-                    Management
-                    <i class="right fas fa-angle-left"></i>
-                </p>
-                </a>
-                <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <router-link to="/users" class="nav-link">
-                    <i class="fas fa-users nav-icon"></i>
-                    <p>users</p>
-                    </router-link>
-                </li>
-                </ul>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="" @click.prevent="logout">

@@ -7,22 +7,22 @@
                 <ul class="list-unstyled">
                   <li>
                     <i class="fas fa-map-marker-alt"></i
-                    ><span class="sr-only">Location:</span>{{myContacts.address}}
+                    ><span class="sr-only">Location:</span>{{profile.address}}
                   </li>
                   <li>
                     <i class="fas fa-envelope"></i
                     ><span class="sr-only">Email:</span
-                    ><a>{{myContacts.email}}</a>
+                    ><a>{{profile.email}}</a>
                   </li>
                   <li>
                     <i class="fas fa-phone"></i
                     ><span class="sr-only">Phone:</span
-                    ><a>{{myContacts.phone}}</a>
+                    ><a>{{profile.phone}}</a>
                   </li>
                   <li>
                     <i class="fas fa-external-link-alt"></i>
                     <span class="sr-only">GitHub:</span>
-                    <a :href="githubLink" target="new">{{githubLink}}</a>
+                    <a :href="profile.github_url" target="new">{{profile.github_url}}</a>
                   </li>
                 </ul>
               </div>
@@ -224,23 +224,6 @@
 </template>
 <script>
   export default {
-    data(){
-      return{
-        myContacts: {},
-        githubLink: '',
-      };
-    },
-    methods: {
-      getMyContacts(){
-        axios.get('/api/myContacts').then((response) => {
-          this.myContacts = response.data;
-          this.githubLink = this.myContacts.github;
-        });
-      }
-    },
-    mounted(){
-      this.getMyContacts();
-      console.log('component mounted');
-    }
+    props: ['profile'],
   }
 </script>

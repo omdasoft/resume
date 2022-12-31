@@ -9,7 +9,7 @@
         </div>
         <!--sidebar-->
         <div class="secondary col-lg-4 col-12">
-          <sidebar-component></sidebar-component>
+          <sidebar-component v-bind:profile="profile"></sidebar-component>
         </div>
         <!--//sidebar-->
       </div>
@@ -18,3 +18,26 @@
   </div>
   
 </template>
+<script>
+ export default {
+  data() {
+    return {
+        profile: {},
+    }
+  },
+  methods: {
+    getProfile() {
+      axios.get('/api/profiles').then((res) => {
+        this.profile = res.data;
+        console.log(this.profile);
+      }).catch(err => {
+        console.log(err);
+      });
+    }
+  },
+  mounted() {
+    this.getProfile();
+    console.log('front layout mounted');
+  }
+}
+</script>
