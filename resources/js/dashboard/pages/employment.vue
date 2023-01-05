@@ -85,7 +85,7 @@
                     </div>
                     <div class="modal-body">
                         <div v-if="errors">
-                            <div v-for="error in errors" class="alert alert-danger">{{ error }}</div>
+                            <div v-for="(error, key) in errors" class="alert alert-danger" :key="key">{{ error }}</div>
                         </div>
                         <form @submit.prevent="editMode === true ? updateEmployment():storeEmployment()" method="post">
                             <div class="row">
@@ -127,10 +127,10 @@
                                 </div>
                             </div>
                             <h3>Manage Details</h3>
-                            <hr></hr>
+                            <hr>
                             <div class="row mb-3">
                                 <div class="col-md-12">
-                                    <div v-for="(detail, index) in formData.employment_details" class="d-flex justify-content-between mb-3">
+                                    <div v-for="(detail, index) in formData.employment_details" class="d-flex justify-content-between mb-3" :key="index">
                                         <textarea class="form-control mr-2" cols="5" name="desc[]" v-model="detail.desc" ></textarea>
                                         <button type="button" v-show="!editMode" class="btn btn-sm btn-danger" @click.prevent="removeDetail(index)"><i class="fa fa-minus"></i> </button>
                                         <button type="button" v-show="editMode" class="btn btn-sm btn-danger" @click.prevent="deleteEmploymentDetails(detail.id)"><i class="fa fa-trash"></i> </button>
@@ -160,11 +160,13 @@
     </div>
 </template>
 <script>
+import moment from 'moment';
     export default {
         data() {
             return {
                 employmentData: {},
                 employmentDetails: {},
+                startDate:"",
                 editMode:false,
                 disableEndDateField:"",
                 formData: new Form({

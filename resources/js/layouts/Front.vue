@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <header-component></header-component>
+    <header-component v-bind:profile="profile" v-bind:profileImageSrc="profileImageSrc"></header-component>
     <div class="container sections-wrapper">
       <div class="row">
         <div class="primary col-lg-8 col-12">
@@ -23,12 +23,14 @@
   data() {
     return {
         profile: {},
+        profileImageSrc: '',
     }
   },
   methods: {
     getProfile() {
       axios.get('/api/profiles').then((res) => {
         this.profile = res.data;
+        this.profileImageSrc = '/storage/uploads/'+this.profile.image.image_name;
         console.log(this.profile);
       }).catch(err => {
         console.log(err);

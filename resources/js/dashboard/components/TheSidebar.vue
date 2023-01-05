@@ -99,9 +99,9 @@
 </template>
 <script>
     export default {
-        data: () => ({
-             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-             }),
+        // data: () => ({
+        //      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        //      }),
         methods:{
             logout:function(){
                axios.post('logout').then(response => {

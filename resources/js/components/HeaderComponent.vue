@@ -5,22 +5,22 @@
         <div class="col-md-6">
           <img
             class="profile-image img-fluid float-left rounded-circle"
-            src="/images/profile.jpg"
+            :src="profileImageSrc"
             width="180"
             height="180"
             alt="profile image"
           />
           <div class="profile-content float-left">
-            <h1 class="name">Emad Aldin Ali</h1>
-            <h2 class="desc">Full Stack Developer</h2>
+            <h1 class="name">{{profile.name}}</h1>
+            <h2 class="desc">{{profile.title}}</h2>
             <ul class="social list-inline">
               <li class="list-inline-item">
-                <a :href="linkedinUrl" target="new"
+                <a :href="profile.linkedin_url" target="new"
                   ><i class="fab fa-linkedin-in"></i
                 ></a>
               </li>
               <li class="list-inline-item">
-                <a :href="githubUrl" target="new"
+                <a :href="profile.github_url" target="new"
                   ><i class="fab fa-github-alt"></i
                 ></a>
               </li>
@@ -50,23 +50,6 @@
 </template>
 <script>
   export default {
-    data(){
-      return{
-        githubUrl: '',
-        linkedinUrl: '',
-      };
-    },
-    methods: {
-      getMyContacts(){
-        axios.get('/api/myContacts').then((response) => {
-          this.githubUrl = response.data.github;
-          this.linkedinUrl = response.data.linkedin;
-        });
-      }
-    },
-    mounted(){
-      this.getMyContacts();
-      console.log('component mounted');
-    }
+    props: ['profile','profileImageSrc']
   }
 </script>
