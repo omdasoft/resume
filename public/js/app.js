@@ -2137,7 +2137,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['profile']
+  props: ['profile', 'cvSrc']
 });
 
 /***/ }),
@@ -2264,8 +2264,8 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           console.log('can not logout something goes wrong');
         }
-      })["catch"](function (error) {
-        console.log(error.getMessage);
+      })["catch"](function (err) {
+        console.log(err);
       });
     }
   }
@@ -3944,7 +3944,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       profile: {},
-      profileImageSrc: ''
+      profileImageSrc: '',
+      cvSrc: ''
     };
   },
   methods: {
@@ -3954,7 +3955,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/profiles').then(function (res) {
         _this.profile = res.data;
         _this.profileImageSrc = '/storage/uploads/' + _this.profile.image.image_name;
-        console.log(_this.profile);
+        _this.cvSrc = '/storage/uploads/' + _this.profile.cv;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -4136,68 +4137,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -4211,7 +4150,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/profiles').then(function (res) {
         _this.profile = res.data;
-        console.log(_this.profile);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -4221,7 +4159,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/employments').then(function (res) {
         _this2.employments = res.data;
-        console.log(_this2.employments);
       });
     }
   },
@@ -68742,170 +68679,30 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _vm._m(2),
-    _vm._v(" "),
-    _vm._m(3)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("aside", { staticClass: "skills aside section" }, [
+    _c("aside", { staticClass: "skills aside section" }, [
       _c("div", { staticClass: "section-inner shadow-sm rounded" }, [
         _c("h2", { staticClass: "heading" }, [_vm._v("Skills")]),
         _vm._v(" "),
         _c("div", { staticClass: "content" }, [
           _c("div", { staticClass: "skillset" }, [
-            _c("div", { staticClass: "item" }, [
-              _c("h3", { staticClass: "level-title" }, [
-                _vm._v("\n                  php "),
-                _c("span", {
-                  staticClass: "level-label",
-                  attrs: {
-                    "data-toggle": "tooltip",
-                    "data-placement": "left",
-                    "data-animation": "true",
-                    title:
-                      "You can use the tooltip to explain more about your skill level..."
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "level-bar" }, [
-                _c("div", {
-                  staticClass: "level-bar-inner",
-                  attrs: { "data-level": "85%" }
-                })
-              ])
-            ]),
+            _vm._m(0),
             _vm._v(" "),
-            _c("div", { staticClass: "item" }, [
-              _c("h3", { staticClass: "level-title" }, [
-                _vm._v("\n                  Laravel "),
-                _c("span", {
-                  staticClass: "level-label",
-                  attrs: {
-                    "data-toggle": "tooltip",
-                    "data-placement": "left",
-                    "data-animation": "true",
-                    title:
-                      "You can use the tooltip to explain more about your skill level..."
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "level-bar" }, [
-                _c("div", {
-                  staticClass: "level-bar-inner",
-                  attrs: { "data-level": "75%" }
-                })
-              ])
-            ]),
+            _vm._m(1),
             _vm._v(" "),
-            _c("div", { staticClass: "item" }, [
-              _c("h3", { staticClass: "level-title" }, [
-                _vm._v("\n                  Javascript & jQuery"),
-                _c("span", {
-                  staticClass: "level-label",
-                  attrs: {
-                    "data-toggle": "tooltip",
-                    "data-placement": "left",
-                    "data-animation": "true",
-                    title:
-                      "You can use the tooltip to explain more about your skill level..."
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "level-bar" }, [
-                _c("div", {
-                  staticClass: "level-bar-inner",
-                  attrs: { "data-level": "70%" }
-                })
-              ])
-            ]),
+            _vm._m(2),
             _vm._v(" "),
-            _c("div", { staticClass: "item" }, [
-              _c("h3", { staticClass: "level-title" }, [
-                _vm._v("\n                  Vue Js "),
-                _c("span", {
-                  staticClass: "level-label",
-                  attrs: {
-                    "data-toggle": "tooltip",
-                    "data-placement": "left",
-                    "data-animation": "true",
-                    title:
-                      "You can use the tooltip to explain more about your skill level..."
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "level-bar" }, [
-                _c("div", {
-                  staticClass: "level-bar-inner",
-                  attrs: { "data-level": "70%" }
-                })
-              ])
-            ]),
+            _vm._m(3),
             _vm._v(" "),
-            _c("div", { staticClass: "item" }, [
-              _c("h3", { staticClass: "level-title" }, [
-                _vm._v("\n                  HTML5, CSS3, Bootstrap"),
-                _c("span", {
-                  staticClass: "level-label",
-                  attrs: {
-                    "data-toggle": "tooltip",
-                    "data-placement": "left",
-                    "data-animation": "true",
-                    title:
-                      "You can use the tooltip to explain more about your skill level..."
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "level-bar" }, [
-                _c("div", {
-                  staticClass: "level-bar-inner",
-                  attrs: { "data-level": "90%" }
-                })
-              ])
-            ]),
+            _vm._m(4),
             _vm._v(" "),
-            _c("div", { staticClass: "item" }, [
-              _c("h3", { staticClass: "level-title" }, [
-                _vm._v("\n                  Java"),
-                _c("span", {
-                  staticClass: "level-label",
-                  attrs: {
-                    "data-toggle": "tooltip",
-                    "data-placement": "left",
-                    "data-animation": "true",
-                    title:
-                      "You can use the tooltip to explain more about your skill level..."
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "level-bar" }, [
-                _c("div", {
-                  staticClass: "level-bar-inner",
-                  attrs: { "data-level": "60%" }
-                })
-              ])
-            ]),
+            _vm._m(5),
             _vm._v(" "),
             _c("p", [
               _c(
                 "a",
                 {
                   staticClass: "more-link",
-                  attrs: { href: "/docs/cv.pdf", download: "" }
+                  attrs: { href: _vm.cvSrc, download: "" }
                 },
                 [
                   _c("i", { staticClass: "far fa-file-pdf fa-2x" }),
@@ -68915,6 +68712,176 @@ var staticRenderFns = [
             ])
           ])
         ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(6),
+    _vm._v(" "),
+    _vm._m(7),
+    _vm._v(" "),
+    _vm._m(8)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "item" }, [
+      _c("h3", { staticClass: "level-title" }, [
+        _vm._v("\n                  php "),
+        _c("span", {
+          staticClass: "level-label",
+          attrs: {
+            "data-toggle": "tooltip",
+            "data-placement": "left",
+            "data-animation": "true",
+            title:
+              "You can use the tooltip to explain more about your skill level..."
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "level-bar" }, [
+        _c("div", {
+          staticClass: "level-bar-inner",
+          attrs: { "data-level": "85%" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "item" }, [
+      _c("h3", { staticClass: "level-title" }, [
+        _vm._v("\n                  Laravel "),
+        _c("span", {
+          staticClass: "level-label",
+          attrs: {
+            "data-toggle": "tooltip",
+            "data-placement": "left",
+            "data-animation": "true",
+            title:
+              "You can use the tooltip to explain more about your skill level..."
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "level-bar" }, [
+        _c("div", {
+          staticClass: "level-bar-inner",
+          attrs: { "data-level": "75%" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "item" }, [
+      _c("h3", { staticClass: "level-title" }, [
+        _vm._v("\n                  Javascript & jQuery"),
+        _c("span", {
+          staticClass: "level-label",
+          attrs: {
+            "data-toggle": "tooltip",
+            "data-placement": "left",
+            "data-animation": "true",
+            title:
+              "You can use the tooltip to explain more about your skill level..."
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "level-bar" }, [
+        _c("div", {
+          staticClass: "level-bar-inner",
+          attrs: { "data-level": "70%" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "item" }, [
+      _c("h3", { staticClass: "level-title" }, [
+        _vm._v("\n                  Vue Js "),
+        _c("span", {
+          staticClass: "level-label",
+          attrs: {
+            "data-toggle": "tooltip",
+            "data-placement": "left",
+            "data-animation": "true",
+            title:
+              "You can use the tooltip to explain more about your skill level..."
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "level-bar" }, [
+        _c("div", {
+          staticClass: "level-bar-inner",
+          attrs: { "data-level": "70%" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "item" }, [
+      _c("h3", { staticClass: "level-title" }, [
+        _vm._v("\n                  HTML5, CSS3, Bootstrap"),
+        _c("span", {
+          staticClass: "level-label",
+          attrs: {
+            "data-toggle": "tooltip",
+            "data-placement": "left",
+            "data-animation": "true",
+            title:
+              "You can use the tooltip to explain more about your skill level..."
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "level-bar" }, [
+        _c("div", {
+          staticClass: "level-bar-inner",
+          attrs: { "data-level": "90%" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "item" }, [
+      _c("h3", { staticClass: "level-title" }, [
+        _vm._v("\n                  Java"),
+        _c("span", {
+          staticClass: "level-label",
+          attrs: {
+            "data-toggle": "tooltip",
+            "data-placement": "left",
+            "data-animation": "true",
+            title:
+              "You can use the tooltip to explain more about your skill level..."
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "level-bar" }, [
+        _c("div", {
+          staticClass: "level-bar-inner",
+          attrs: { "data-level": "60%" }
+        })
       ])
     ])
   },
@@ -72384,7 +72351,11 @@ var render = function() {
           _c(
             "div",
             { staticClass: "secondary col-lg-4 col-12" },
-            [_c("sidebar-component", { attrs: { profile: _vm.profile } })],
+            [
+              _c("sidebar-component", {
+                attrs: { profile: _vm.profile, cvSrc: _vm.cvSrc }
+              })
+            ],
             1
           )
         ])

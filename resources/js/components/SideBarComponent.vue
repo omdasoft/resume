@@ -140,7 +140,7 @@
                     <!--//level-bar-->
                   </div>
                   <!--//item-->
-                  <p><a class="more-link" href="/docs/cv.pdf" download><i class="far fa-file-pdf fa-2x"></i> More on Cv</a></p> 
+                  <p><a class="more-link" :href="cvSrc" download><i class="far fa-file-pdf fa-2x"></i> More on Cv</a></p> 
 
                 </div>
               </div>
@@ -224,6 +224,6 @@
 </template>
 <script>
   export default {
-    props: ['profile'],
+    props: ['profile','cvSrc'],
   }
 </script>

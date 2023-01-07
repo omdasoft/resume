@@ -9,7 +9,7 @@
         </div>
         <!--sidebar-->
         <div class="secondary col-lg-4 col-12">
-          <sidebar-component v-bind:profile="profile"></sidebar-component>
+          <sidebar-component :profile="profile" :cvSrc="cvSrc"></sidebar-component>
         </div>
         <!--//sidebar-->
       </div>
@@ -24,14 +24,16 @@
     return {
         profile: {},
         profileImageSrc: '',
+        cvSrc: '',
     }
   },
   methods: {
     getProfile() {
       axios.get('/api/profiles').then((res) => {
+        
         this.profile = res.data;
         this.profileImageSrc = '/storage/uploads/'+this.profile.image.image_name;
-        console.log(this.profile);
+        this.cvSrc = '/storage/uploads/'+this.profile.cv;
       }).catch(err => {
         console.log(err);
       });

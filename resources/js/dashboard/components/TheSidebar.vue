@@ -111,8 +111,8 @@
                   else {
                     console.log('can not logout something goes wrong');
                   }
-                }).catch(error => {
-                    console.log(error.getMessage);
+                }).catch(err => {
+                    console.log(err);
               });
             },
         },
