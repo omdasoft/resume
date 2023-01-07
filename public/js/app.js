@@ -1912,6 +1912,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2049,11 +2051,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+Vue.filter('getYear', function (date) {
+  if (date) {
+    return moment__WEBPACK_IMPORTED_MODULE_0___default()(String(date)).year();
+  }
+});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['profile', 'cvSrc'],
   data: function data() {
     return {
-      skills: {}
+      skills: {},
+      educations: {}
     };
   },
   methods: {
@@ -2066,10 +2075,21 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         console.log(err);
       });
+    },
+    getEducation: function getEducation() {
+      var _this2 = this;
+
+      axios.get('/api/educations').then(function (res) {
+        _this2.educations = res.data;
+        console.log(_this2.educations);
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   },
   mounted: function mounted() {
     this.getSkills();
+    this.getEducation();
     console.log('sidebare mounted');
   }
 });
@@ -68668,40 +68688,55 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _vm._m(2)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("aside", { staticClass: "education aside section" }, [
+    _c("aside", { staticClass: "education aside section" }, [
       _c("div", { staticClass: "section-inner shadow-sm rounded" }, [
         _c("h2", { staticClass: "heading" }, [_vm._v("Education")]),
         _vm._v(" "),
-        _c("div", { staticClass: "content" }, [
-          _c("div", { staticClass: "item" }, [
-            _c("h3", { staticClass: "title" }, [
-              _c("i", { staticClass: "fas fa-graduation-cap" }),
-              _vm._v(" BSc Information systems\n              ")
-            ]),
-            _vm._v(" "),
-            _c("h4", { staticClass: "university" }, [
-              _vm._v(
-                "\n                Omdurman Islamic University\n                "
-              ),
-              _c("span", { staticClass: "year" }, [_vm._v("(2014-2016)")])
+        _c(
+          "div",
+          { staticClass: "content" },
+          _vm._l(_vm.educations, function(education) {
+            return _c("div", { key: education.id, staticClass: "item" }, [
+              _c("h3", { staticClass: "title" }, [
+                _c("i", { staticClass: "fas fa-graduation-cap" }),
+                _vm._v(
+                  " " +
+                    _vm._s(education.degree) +
+                    " of " +
+                    _vm._s(education.specialty) +
+                    "\n              "
+                )
+              ]),
+              _vm._v(" "),
+              _c("h4", { staticClass: "university" }, [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(education.university) +
+                    "\n                "
+                ),
+                _c("span", { staticClass: "year" }, [
+                  _vm._v(
+                    "(" +
+                      _vm._s(_vm._f("getYear")(education.from)) +
+                      " - " +
+                      _vm._s(_vm._f("getYear")(education.to)) +
+                      ")"
+                  )
+                ])
+              ])
             ])
-          ])
-        ])
+          }),
+          0
+        )
       ])
-    ])
-  },
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1)
+  ])
+}
+var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -69405,10 +69440,10 @@ var render = function() {
                 _vm.errors
                   ? _c(
                       "div",
-                      _vm._l(_vm.errors, function(error) {
+                      _vm._l(_vm.errors, function(key, error) {
                         return _c(
                           "div",
-                          { staticClass: "alert alert-danger" },
+                          { key: key, staticClass: "alert alert-danger" },
                           [_vm._v(_vm._s(error))]
                         )
                       }),

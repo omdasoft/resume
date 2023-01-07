@@ -66,13 +66,13 @@
             <div class="section-inner shadow-sm rounded">
               <h2 class="heading">Education</h2>
               <div class="content">
-                <div class="item">
+                <div class="item" v-for="education in educations" :key="education.id">
                   <h3 class="title">
-                    <i class="fas fa-graduation-cap"></i> BSc Information systems
+                    <i class="fas fa-graduation-cap"></i> {{education.degree}} of {{education.specialty}}
                   </h3>
                   <h4 class="university">
-                    Omdurman Islamic University
-                    <span class="year">(2014-2016)</span>
+                    {{education.university}}
+                    <span class="year">({{education.from|getYear}} - {{education.to|getYear}})</span>
                   </h4>
                 </div>
                
@@ -136,11 +136,18 @@
     </div>
 </template>
 <script>
+import moment from 'moment'
+ Vue.filter('getYear', function(date) {
+        if (date) {
+            return moment(String(date)).year();
+        }
+  });
   export default {
     props: ['profile','cvSrc'],
     data() {
       return {
-        skills: {}
+        skills: {},
+        educations: {}
       }
     },
     methods:{
@@ -151,10 +158,19 @@
         }).catch(err => {
           console.log(err);
         });
+      },
+      getEducation() {
+        axios.get('/api/educations').then((res) => {
+          this.educations = res.data;
+          console.log(this.educations);
+        }).catch(err => {
+          console.log(err);
+        });
       }
     },
     mounted() {
       this.getSkills();
+      this.getEducation();
       console.log('sidebare mounted');
     }
   }
