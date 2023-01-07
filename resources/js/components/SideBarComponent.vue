@@ -37,9 +37,9 @@
               <div class="content">
                 <div class="skillset">
                   <!-- item -->
-                  <div class="item">
+                  <div class="item" v-for="skill in skills" :key="skill.id">
                     <h3 class="level-title">
-                      php <span
+                      {{skill.title}} <span
                         class="level-label"
                         data-toggle="tooltip"
                         data-placement="left"
@@ -49,97 +49,10 @@
                       >
                     </h3>
                     <div class="level-bar">
-                      <div class="level-bar-inner" data-level="85%"></div>
+                      <div class="level-bar-inner" :data-level="skill.percentage" :style="{width: skill.percentage+'%'}"></div>
                     </div>
                   </div>
                   <!-- // item -->
-                   <!-- item -->
-                  <div class="item">
-                    <h3 class="level-title">
-                      Laravel <span
-                        class="level-label"
-                        data-toggle="tooltip"
-                        data-placement="left"
-                        data-animation="true"
-                        title="You can use the tooltip to explain more about your skill level..."
-                        ></span
-                      >
-                    </h3>
-                    <div class="level-bar">
-                      <div class="level-bar-inner" data-level="75%"></div>
-                    </div>
-                  </div>
-                  <!-- // item -->
-                  <div class="item">
-                    <h3 class="level-title">
-                      Javascript &amp; jQuery<span
-                        class="level-label"
-                        data-toggle="tooltip"
-                        data-placement="left"
-                        data-animation="true"
-                        title="You can use the tooltip to explain more about your skill level..."
-                        ></span>
-                    </h3>
-                    <div class="level-bar">
-                      <div class="level-bar-inner" data-level="70%"></div>
-                    </div>
-                    <!--//level-bar-->
-                  </div>
-                  <!--//item-->
-
-                   <!-- item -->
-                  <div class="item">
-                    <h3 class="level-title">
-                      Vue Js <span
-                        class="level-label"
-                        data-toggle="tooltip"
-                        data-placement="left"
-                        data-animation="true"
-                        title="You can use the tooltip to explain more about your skill level..."
-                        ></span
-                      >
-                    </h3>
-                    <div class="level-bar">
-                      <div class="level-bar-inner" data-level="70%"></div>
-                    </div>
-                  </div>
-                  <!-- // item -->
-
-                  <div class="item">
-                    <h3 class="level-title">
-                      HTML5, CSS3, Bootstrap<span
-                        class="level-label"
-                        data-toggle="tooltip"
-                        data-placement="left"
-                        data-animation="true"
-                        title="You can use the tooltip to explain more about your skill level..."
-                        ></span
-                      >
-                    </h3>
-                    <div class="level-bar">
-                      <div class="level-bar-inner" data-level="90%"></div>
-                    </div>
-                    <!--//level-bar-->
-                  </div>
-                  <!--//item-->
-
-                  <div class="item">
-                    <h3 class="level-title">
-                      Java<span
-                        class="level-label"
-                        data-toggle="tooltip"
-                        data-placement="left"
-                        data-animation="true"
-                        title="You can use the tooltip to explain more about your skill level..."
-                        ></span
-                      >
-                    </h3>
-                    <div class="level-bar">
-                      <div class="level-bar-inner" data-level="60%"></div>
-                    </div>
-                    <!--//level-bar-->
-                  </div>
-                  <!--//item-->
                   <p><a class="more-link" :href="cvSrc" download><i class="far fa-file-pdf fa-2x"></i> More on Cv</a></p> 
 
                 </div>
@@ -225,5 +138,25 @@
 <script>
   export default {
     props: ['profile','cvSrc'],
+    data() {
+      return {
+        skills: {}
+      }
+    },
+    methods:{
+      getSkills() {
+        axios.get('/api/skills').then((res) => {
+          this.skills = res.data;
+          console.log(this.skills);
+        }).catch(err => {
+          console.log(err);
+        });
+      }
+    },
+    mounted() {
+      this.getSkills();
+      console.log('sidebare mounted');
+    }
   }
 </script>
+

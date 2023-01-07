@@ -2049,95 +2049,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['profile', 'cvSrc']
+  props: ['profile', 'cvSrc'],
+  data: function data() {
+    return {
+      skills: {}
+    };
+  },
+  methods: {
+    getSkills: function getSkills() {
+      var _this = this;
+
+      axios.get('/api/skills').then(function (res) {
+        _this.skills = res.data;
+        console.log(_this.skills);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getSkills();
+    console.log('sidebare mounted');
+  }
 });
 
 /***/ }),
@@ -68684,207 +68618,64 @@ var render = function() {
         _c("h2", { staticClass: "heading" }, [_vm._v("Skills")]),
         _vm._v(" "),
         _c("div", { staticClass: "content" }, [
-          _c("div", { staticClass: "skillset" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2),
-            _vm._v(" "),
-            _vm._m(3),
-            _vm._v(" "),
-            _vm._m(4),
-            _vm._v(" "),
-            _vm._m(5),
-            _vm._v(" "),
-            _c("p", [
-              _c(
-                "a",
-                {
-                  staticClass: "more-link",
-                  attrs: { href: _vm.cvSrc, download: "" }
-                },
-                [
-                  _c("i", { staticClass: "far fa-file-pdf fa-2x" }),
-                  _vm._v(" More on Cv")
-                ]
-              )
-            ])
-          ])
+          _c(
+            "div",
+            { staticClass: "skillset" },
+            [
+              _vm._l(_vm.skills, function(skill) {
+                return _c("div", { key: skill.id, staticClass: "item" }, [
+                  _c("h3", { staticClass: "level-title" }, [
+                    _vm._v("\n                  " + _vm._s(skill.title) + " "),
+                    _c("span", {
+                      staticClass: "level-label",
+                      attrs: {
+                        "data-toggle": "tooltip",
+                        "data-placement": "left",
+                        "data-animation": "true",
+                        title:
+                          "You can use the tooltip to explain more about your skill level..."
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "level-bar" }, [
+                    _c("div", {
+                      staticClass: "level-bar-inner",
+                      style: { width: skill.percentage + "%" },
+                      attrs: { "data-level": skill.percentage }
+                    })
+                  ])
+                ])
+              }),
+              _vm._v(" "),
+              _c("p", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "more-link",
+                    attrs: { href: _vm.cvSrc, download: "" }
+                  },
+                  [
+                    _c("i", { staticClass: "far fa-file-pdf fa-2x" }),
+                    _vm._v(" More on Cv")
+                  ]
+                )
+              ])
+            ],
+            2
+          )
         ])
       ])
     ]),
     _vm._v(" "),
-    _vm._m(6),
+    _vm._m(0),
     _vm._v(" "),
-    _vm._m(7),
+    _vm._m(1),
     _vm._v(" "),
-    _vm._m(8)
+    _vm._m(2)
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "item" }, [
-      _c("h3", { staticClass: "level-title" }, [
-        _vm._v("\n                  php "),
-        _c("span", {
-          staticClass: "level-label",
-          attrs: {
-            "data-toggle": "tooltip",
-            "data-placement": "left",
-            "data-animation": "true",
-            title:
-              "You can use the tooltip to explain more about your skill level..."
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "level-bar" }, [
-        _c("div", {
-          staticClass: "level-bar-inner",
-          attrs: { "data-level": "85%" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "item" }, [
-      _c("h3", { staticClass: "level-title" }, [
-        _vm._v("\n                  Laravel "),
-        _c("span", {
-          staticClass: "level-label",
-          attrs: {
-            "data-toggle": "tooltip",
-            "data-placement": "left",
-            "data-animation": "true",
-            title:
-              "You can use the tooltip to explain more about your skill level..."
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "level-bar" }, [
-        _c("div", {
-          staticClass: "level-bar-inner",
-          attrs: { "data-level": "75%" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "item" }, [
-      _c("h3", { staticClass: "level-title" }, [
-        _vm._v("\n                  Javascript & jQuery"),
-        _c("span", {
-          staticClass: "level-label",
-          attrs: {
-            "data-toggle": "tooltip",
-            "data-placement": "left",
-            "data-animation": "true",
-            title:
-              "You can use the tooltip to explain more about your skill level..."
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "level-bar" }, [
-        _c("div", {
-          staticClass: "level-bar-inner",
-          attrs: { "data-level": "70%" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "item" }, [
-      _c("h3", { staticClass: "level-title" }, [
-        _vm._v("\n                  Vue Js "),
-        _c("span", {
-          staticClass: "level-label",
-          attrs: {
-            "data-toggle": "tooltip",
-            "data-placement": "left",
-            "data-animation": "true",
-            title:
-              "You can use the tooltip to explain more about your skill level..."
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "level-bar" }, [
-        _c("div", {
-          staticClass: "level-bar-inner",
-          attrs: { "data-level": "70%" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "item" }, [
-      _c("h3", { staticClass: "level-title" }, [
-        _vm._v("\n                  HTML5, CSS3, Bootstrap"),
-        _c("span", {
-          staticClass: "level-label",
-          attrs: {
-            "data-toggle": "tooltip",
-            "data-placement": "left",
-            "data-animation": "true",
-            title:
-              "You can use the tooltip to explain more about your skill level..."
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "level-bar" }, [
-        _c("div", {
-          staticClass: "level-bar-inner",
-          attrs: { "data-level": "90%" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "item" }, [
-      _c("h3", { staticClass: "level-title" }, [
-        _vm._v("\n                  Java"),
-        _c("span", {
-          staticClass: "level-label",
-          attrs: {
-            "data-toggle": "tooltip",
-            "data-placement": "left",
-            "data-animation": "true",
-            title:
-              "You can use the tooltip to explain more about your skill level..."
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "level-bar" }, [
-        _c("div", {
-          staticClass: "level-bar-inner",
-          attrs: { "data-level": "60%" }
-        })
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
