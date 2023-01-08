@@ -43,37 +43,28 @@
                 </div>
                 <!--//item-->
                 <hr class="divider" />
-                <div class="item row">
+                <div class="item row" v-for="portfolio in portfolios" :key="portfolio.id">
                   <a class="col-md-4 col-12" href="#">
                     <img
                       class="img-fluid project-image rounded shadow-sm"
-                      src="/images/projects/3ms.png"
+                      :src="getImageSrc(portfolio.image.image_name)"
                       alt="project name"
                     />
                   </a>
                   <div class="desc col-md-8 col-12">
                     <h3 class="title">
                       <a href="#"
-                        >3MS Market A leading website for classified ads</a
+                        >{{portfolio.title}}</a
                       >
                     </h3>
                     <p class="mb-2">
-                      3MS Market is a classified ads website that enables the
-                      advertisers to post an ads in the website , it contains
-                      advertiser dashboard which enable them to manage their ads
-                      , and admin dashboard to manage the whole website
-                      operations (eg. advertisers - ads - activate ads - news ..
-                      and so on ) , the website contains registration and forget
-                      password systems as well as notification systems that send
-                      new posted ads notifications to system admin , the website
-                      view contains advanced features to search and filter ads
-                      in the website like ajax and autocomplete search ,
-                      moreover the website design is responsive .
+                      {{portfolio.summary}}
                     </p>
                     <p>
                       <a
                         class="more-link"
-                        href="#"
+                        :href="portfolio.url"
+                        target="new"
                       
                         ><i class="fas fa-external-link-alt"></i>Find out
                         more</a
@@ -82,83 +73,7 @@
                   </div>
                   <!--//desc-->
                 </div>
-                <!--//item-->
-
-                <div class="item row">
-                  <a
-                    class="col-md-4 col-12"
-                    href="#"
-                    
-                  >
-                    <img
-                      class="img-fluid project-image rounded shadow-sm"
-                      src="/images/projects/sloc.png"
-                      alt="project name"
-                    />
-                  </a>
-                  <div class="desc col-md-8 col-12">
-                    <h3 class="title">
-                      <a
-                        href="#"
-                        target="_blank"
-                        >sudanese license for computer operating website</a
-                      >
-                    </h3>
-                    <p class="mb-2">
-                     sudanese license for computer operating website is dynamic and responsive website with admin dashboard to manage the website , it contains all sudanese license for computer operating services (eg. news - training centers - exam centers .. etc)
-                    </p>
-                    <p>
-                      <a
-                        class="more-link"
-                        href="#"
-                      
-                        ><i class="fas fa-external-link-alt"></i>Find out
-                        more</a
-                      >
-                    </p>
-                  </div>
-                  <!--//desc-->
-                </div>
-                <!--//item-->
-
-                
-                <div class="item row">
-                  <a
-                    class="col-md-4 col-12"
-                    href="#"
-                    
-                  >
-                    <img
-                      class="img-fluid project-image rounded shadow-sm"
-                      src="/images/projects/scms.png"
-                      alt="project name"
-                    />
-                  </a>
-                  <div class="desc col-md-8 col-12">
-                    <h3 class="title">
-                      <a
-                        href="#"
-                        target="_blank"
-                        >sudanese license for computer operating centers management system (SCMS)</a
-                      >
-                    </h3>
-                    <p class="mb-2">
-                    SCMS(slco system management system) is a system used to manage Sudanese license for computer operating centers , such as adding the centers data , accrediting and re-accrediting centers, extracting detailed reports, as well as adding exam sessions
-                    </p>
-                    <p>
-                      <a
-                        class="more-link"
-                        href="#"
-                      
-                        ><i class="fas fa-external-link-alt"></i>Find out
-                        more</a
-                      >
-                    </p>
-                  </div>
-                  <!--//desc-->
-                </div>
-                <!--//item-->
-               
+                <!--//item-->      
               </div>
               <!--//content-->
             </div>
@@ -167,6 +82,31 @@
 </template>
 <script>
 export default {
-    
+    data() {
+      return {
+        portfolios: {},
+        uploadPath: '/storage/uploads/',
+      }
+    },
+    methods: {
+      getPortfolios() {
+        axios.get('/api/portfolios').then((res) => {
+          this.portfolios = res.data;
+          console.log(this.portfolios);
+        }).catch(err => {
+          console.log(err);
+        });
+      },
+      getImageSrc(imgName) {
+        return this.uploadPath+imgName;
+      },
+      getProjectUrl(url) {
+        return 'http:/'+url;
+      }
+    },
+    mounted() {
+      this.getPortfolios();
+      console.log('portfolio mounted');
+    }
 }
 </script>

@@ -69,7 +69,7 @@
                     </div>
                     <div class="modal-body">
                         <div v-if="errors">
-                            <div v-for="error in errors" class="alert alert-danger">{{ error }}</div>
+                            <div v-for="(error, key) in errors" class="alert alert-danger" :key="key">{{ error }}</div>
                         </div>
                         <form @submit.prevent="editMode === true ? updatePortfolio():storePortfolio()">
                             <div class="row">

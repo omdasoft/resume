@@ -4216,92 +4216,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      portfolios: {},
+      uploadPath: '/storage/uploads/'
+    };
+  },
+  methods: {
+    getPortfolios: function getPortfolios() {
+      var _this = this;
+
+      axios.get('/api/portfolios').then(function (res) {
+        _this.portfolios = res.data;
+        console.log(_this.portfolios);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    getImageSrc: function getImageSrc(imgName) {
+      return this.uploadPath + imgName;
+    },
+    getProjectUrl: function getProjectUrl(url) {
+      return 'http:/' + url;
+    }
+  },
+  mounted: function mounted() {
+    this.getPortfolios();
+    console.log('portfolio mounted');
+  }
+});
 
 /***/ }),
 
@@ -69928,10 +69872,10 @@ var render = function() {
                 _vm.errors
                   ? _c(
                       "div",
-                      _vm._l(_vm.errors, function(error) {
+                      _vm._l(_vm.errors, function(error, key) {
                         return _c(
                           "div",
-                          { staticClass: "alert alert-danger" },
+                          { key: key, staticClass: "alert alert-danger" },
                           [_vm._v(_vm._s(error))]
                         )
                       }),
@@ -72544,171 +72488,122 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "latest section" }, [
-      _c("div", { staticClass: "section-inner shadow-sm rounded" }, [
-        _c("h2", { staticClass: "heading" }, [_vm._v("Latest Projects")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "content" }, [
-          _c("div", { staticClass: "item featured text-center" }, [
-            _c("div", { staticClass: "featured-image has-ribbon" }, [
+  return _c("section", { staticClass: "latest section" }, [
+    _c("div", { staticClass: "section-inner shadow-sm rounded" }, [
+      _c("h2", { staticClass: "heading" }, [_vm._v("Latest Projects")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "content" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("hr", { staticClass: "divider" }),
+          _vm._v(" "),
+          _vm._l(_vm.portfolios, function(portfolio) {
+            return _c("div", { key: portfolio.id, staticClass: "item row" }, [
               _c(
                 "a",
-                {
-                  attrs: { href: "https://www.appex-sd.com/", target: "_blank" }
-                },
+                { staticClass: "col-md-4 col-12", attrs: { href: "#" } },
                 [
                   _c("img", {
                     staticClass: "img-fluid project-image rounded shadow-sm",
                     attrs: {
-                      src: "/images/projects/appex.png",
+                      src: _vm.getImageSrc(portfolio.image.image_name),
                       alt: "project name"
                     }
                   })
                 ]
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "ribbon" }, [
-                _c("div", { staticClass: "text" }, [_vm._v("New")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("h3", { staticClass: "title mb-3" }, [
-              _c(
-                "a",
-                {
-                  attrs: { href: "https://www.appex-sd.com/", target: "_blank" }
-                },
-                [
+              _c("div", { staticClass: "desc col-md-8 col-12" }, [
+                _c("h3", { staticClass: "title" }, [
+                  _c("a", { attrs: { href: "#" } }, [
+                    _vm._v(_vm._s(portfolio.title))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "mb-2" }, [
                   _vm._v(
-                    "Sudan's first exhibition for mobile applications and\n                electronic services (APPEX)"
+                    "\n                " +
+                      _vm._s(portfolio.summary) +
+                      "\n              "
                   )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "desc text-left" }, [
-              _c("p", [
-                _vm._v(
-                  "\n                its interactive and responsive website that enable\n                exhibitors and sponsors to subscribe in the exhibition\n                directly from the website beside providing the visitors\n                with all information about the exhibition and its related\n                activities\n              "
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-cta-secondary",
-                attrs: { href: "https://www.appex-sd.com/", target: "_blank" }
-              },
-              [
-                _c("i", { staticClass: "fas fa-thumbs-up" }),
-                _vm._v("Go To Website")
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("hr", { staticClass: "divider" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "item row" }, [
-            _c("a", { staticClass: "col-md-4 col-12", attrs: { href: "#" } }, [
-              _c("img", {
-                staticClass: "img-fluid project-image rounded shadow-sm",
-                attrs: { src: "/images/projects/3ms.png", alt: "project name" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "desc col-md-8 col-12" }, [
-              _c("h3", { staticClass: "title" }, [
-                _c("a", { attrs: { href: "#" } }, [
-                  _vm._v("3MS Market A leading website for classified ads")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "mb-2" }, [
-                _vm._v(
-                  "\n                3MS Market is a classified ads website that enables the\n                advertisers to post an ads in the website , it contains\n                advertiser dashboard which enable them to manage their ads\n                , and admin dashboard to manage the whole website\n                operations (eg. advertisers - ads - activate ads - news ..\n                and so on ) , the website contains registration and forget\n                password systems as well as notification systems that send\n                new posted ads notifications to system admin , the website\n                view contains advanced features to search and filter ads\n                in the website like ajax and autocomplete search ,\n                moreover the website design is responsive .\n              "
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _c("a", { staticClass: "more-link", attrs: { href: "#" } }, [
-                  _c("i", { staticClass: "fas fa-external-link-alt" }),
-                  _vm._v("Find out\n                  more")
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "item row" }, [
-            _c("a", { staticClass: "col-md-4 col-12", attrs: { href: "#" } }, [
-              _c("img", {
-                staticClass: "img-fluid project-image rounded shadow-sm",
-                attrs: { src: "/images/projects/sloc.png", alt: "project name" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "desc col-md-8 col-12" }, [
-              _c("h3", { staticClass: "title" }, [
-                _c("a", { attrs: { href: "#", target: "_blank" } }, [
-                  _vm._v("sudanese license for computer operating website")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "mb-2" }, [
-                _vm._v(
-                  "\n               sudanese license for computer operating website is dynamic and responsive website with admin dashboard to manage the website , it contains all sudanese license for computer operating services (eg. news - training centers - exam centers .. etc)\n              "
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _c("a", { staticClass: "more-link", attrs: { href: "#" } }, [
-                  _c("i", { staticClass: "fas fa-external-link-alt" }),
-                  _vm._v("Find out\n                  more")
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "item row" }, [
-            _c("a", { staticClass: "col-md-4 col-12", attrs: { href: "#" } }, [
-              _c("img", {
-                staticClass: "img-fluid project-image rounded shadow-sm",
-                attrs: { src: "/images/projects/scms.png", alt: "project name" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "desc col-md-8 col-12" }, [
-              _c("h3", { staticClass: "title" }, [
-                _c("a", { attrs: { href: "#", target: "_blank" } }, [
-                  _vm._v(
-                    "sudanese license for computer operating centers management system (SCMS)"
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "more-link",
+                      attrs: { href: portfolio.url, target: "new" }
+                    },
+                    [
+                      _c("i", { staticClass: "fas fa-external-link-alt" }),
+                      _vm._v("Find out\n                  more")
+                    ]
                   )
                 ])
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "mb-2" }, [
-                _vm._v(
-                  "\n              SCMS(slco system management system) is a system used to manage Sudanese license for computer operating centers , such as adding the centers data , accrediting and re-accrediting centers, extracting detailed reports, as well as adding exam sessions\n              "
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _c("a", { staticClass: "more-link", attrs: { href: "#" } }, [
-                  _c("i", { staticClass: "fas fa-external-link-alt" }),
-                  _vm._v("Find out\n                  more")
-                ])
               ])
             ])
-          ])
+          })
+        ],
+        2
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "item featured text-center" }, [
+      _c("div", { staticClass: "featured-image has-ribbon" }, [
+        _c(
+          "a",
+          { attrs: { href: "https://www.appex-sd.com/", target: "_blank" } },
+          [
+            _c("img", {
+              staticClass: "img-fluid project-image rounded shadow-sm",
+              attrs: { src: "/images/projects/appex.png", alt: "project name" }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "ribbon" }, [
+          _c("div", { staticClass: "text" }, [_vm._v("New")])
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c("h3", { staticClass: "title mb-3" }, [
+        _c(
+          "a",
+          { attrs: { href: "https://www.appex-sd.com/", target: "_blank" } },
+          [
+            _vm._v(
+              "Sudan's first exhibition for mobile applications and\n                electronic services (APPEX)"
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "desc text-left" }, [
+        _c("p", [
+          _vm._v(
+            "\n                its interactive and responsive website that enable\n                exhibitors and sponsors to subscribe in the exhibition\n                directly from the website beside providing the visitors\n                with all information about the exhibition and its related\n                activities\n              "
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-cta-secondary",
+          attrs: { href: "https://www.appex-sd.com/", target: "_blank" }
+        },
+        [_c("i", { staticClass: "fas fa-thumbs-up" }), _vm._v("Go To Website")]
+      )
     ])
   }
 ]
