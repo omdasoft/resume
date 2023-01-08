@@ -138,9 +138,9 @@
 <script>
 import moment from 'moment'
  Vue.filter('getYear', function(date) {
-        if (date) {
-            return moment(String(date)).year();
-        }
+    if (date) {
+        return moment(String(date)).year();
+    }
   });
   export default {
     props: ['profile','cvSrc'],
@@ -154,7 +154,6 @@ import moment from 'moment'
       getSkills() {
         axios.get('/api/skills').then((res) => {
           this.skills = res.data;
-          console.log(this.skills);
         }).catch(err => {
           console.log(err);
         });
@@ -162,7 +161,6 @@ import moment from 'moment'
       getEducation() {
         axios.get('/api/educations').then((res) => {
           this.educations = res.data;
-          console.log(this.educations);
         }).catch(err => {
           console.log(err);
         });

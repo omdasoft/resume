@@ -2071,7 +2071,6 @@ Vue.filter('getYear', function (date) {
 
       axios.get('/api/skills').then(function (res) {
         _this.skills = res.data;
-        console.log(_this.skills);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2081,7 +2080,6 @@ Vue.filter('getYear', function (date) {
 
       axios.get('/api/educations').then(function (res) {
         _this2.educations = res.data;
-        console.log(_this2.educations);
       })["catch"](function (err) {
         console.log(err);
       });
