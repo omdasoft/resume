@@ -5,16 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class Portfolio extends Model
 {
     use HasFactory;
 
+    // protected $casts = [
+    //     'featured' => 'boolean',
+    // ];
+
     protected $fillable = [
         'title',
         'summary',
         'url',
-        'github_url'
+        'github_url',
+        'featured'
     ];
 
     public function image() {

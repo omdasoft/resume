@@ -37,6 +37,7 @@ class PortfolioController extends Controller
             $portfolio->summary = $request->summary;
             $portfolio->url = $request->url;
             $portfolio->github_url = $request->github_url;
+            $portfolio->featured = $request->featured;
             $portfolio->save();
             $image = new Image();
             $image->image_name = $this->uploadFile($request->image);
@@ -78,6 +79,7 @@ class PortfolioController extends Controller
             $portfolio->summary = $request->summary;
             $portfolio->url = $request->url;
             $portfolio->github_url = $request->github_url;
+            $portfolio->featured = $request->featured;
             $portfolio->save();
 
             if($request->hasFile('image')) {

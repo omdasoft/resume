@@ -107,6 +107,14 @@
                                         <input type="file" ref="imageUpload" name="image" id="image" class="form-control" @change="onImageChange">
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input class="form-check-input ml-1" v-model="formData.featured" :value="formData.featured" @change="onFeaturedChange" type="checkbox" id="featured">
+                                        <label class="form-check-label ml-4" for="featured">
+                                            Featured
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-md-12">
@@ -152,7 +160,8 @@ export default {
                 title: "",
                 summary: "",
                 url: "",
-                github_url: ""
+                github_url: "",
+                featured: "",
             },
         };
     },
@@ -162,6 +171,9 @@ export default {
                this.portfolios = res.data;
             });
         },
+        onFeaturedChange() {
+            this.formData.featured = this.formData.featured === true ? 1:0;
+        },
         editPortfolioModal(portfolio) {
             this.errors = "";
             this.editMode = true;
@@ -170,6 +182,7 @@ export default {
             this.formData.summary = portfolio.title;
             this.formData.url = portfolio.url;
             this.formData.github_url = portfolio.github_url;
+            this.formData.featured = portfolio.featured;
             this.image = "";
             if(portfolio.image) {
                 this.imageSrc = this.path+portfolio.image.image_name;
@@ -184,6 +197,7 @@ export default {
             this.formData.summary = "";
             this.formData.url = "";
             this.formData.github_url = "";
+            this.formData.featured = "";
             this.image = "";
             this.imageSrc = "";
             this.$refs.imageUpload.value = "";

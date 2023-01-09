@@ -2667,6 +2667,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2681,7 +2689,8 @@ __webpack_require__.r(__webpack_exports__);
         title: "",
         summary: "",
         url: "",
-        github_url: ""
+        github_url: "",
+        featured: ""
       }
     };
   },
@@ -2693,6 +2702,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.portfolios = res.data;
       });
     },
+    onFeaturedChange: function onFeaturedChange() {
+      this.formData.featured = this.formData.featured === true ? 1 : 0;
+    },
     editPortfolioModal: function editPortfolioModal(portfolio) {
       this.errors = "";
       this.editMode = true;
@@ -2701,6 +2713,7 @@ __webpack_require__.r(__webpack_exports__);
       this.formData.summary = portfolio.title;
       this.formData.url = portfolio.url;
       this.formData.github_url = portfolio.github_url;
+      this.formData.featured = portfolio.featured;
       this.image = "";
 
       if (portfolio.image) {
@@ -2717,6 +2730,7 @@ __webpack_require__.r(__webpack_exports__);
       this.formData.summary = "";
       this.formData.url = "";
       this.formData.github_url = "";
+      this.formData.featured = "";
       this.image = "";
       this.imageSrc = "";
       this.$refs.imageUpload.value = "";
@@ -70049,6 +70063,78 @@ var render = function() {
                             attrs: { type: "file", name: "image", id: "image" },
                             on: { change: _vm.onImageChange }
                           })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.formData.featured,
+                                expression: "formData.featured"
+                              }
+                            ],
+                            staticClass: "form-check-input ml-1",
+                            attrs: { type: "checkbox", id: "featured" },
+                            domProps: {
+                              value: _vm.formData.featured,
+                              checked: Array.isArray(_vm.formData.featured)
+                                ? _vm._i(
+                                    _vm.formData.featured,
+                                    _vm.formData.featured
+                                  ) > -1
+                                : _vm.formData.featured
+                            },
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$a = _vm.formData.featured,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = _vm.formData.featured,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.formData,
+                                          "featured",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.formData,
+                                          "featured",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(_vm.formData, "featured", $$c)
+                                  }
+                                },
+                                _vm.onFeaturedChange
+                              ]
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "form-check-label ml-4",
+                              attrs: { for: "featured" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                        Featured\n                                    "
+                              )
+                            ]
+                          )
                         ])
                       ])
                     ]),
