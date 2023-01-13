@@ -3,12 +3,12 @@
             <div class="section-inner shadow-sm rounded">
               <h2 class="heading">Latest Projects</h2>
               <div class="content">
-                <div class="item featured text-center">
+                <div class="item featured text-center" v-for="feature in featuredPortfolios" :key="feature.id">
                   <div class="featured-image has-ribbon">
                     <a href="https://www.appex-sd.com/" target="_blank">
                       <img
                         class="img-fluid project-image rounded shadow-sm"
-                        src="/images/projects/appex.png"
+                        :src="getImageSrc(feature.image.image_name)"
                         alt="project name"
                       />
                     </a>
@@ -18,25 +18,19 @@
                   </div>
 
                   <h3 class="title mb-3">
-                    <a href="https://www.appex-sd.com/" target="_blank"
-                      >Sudan's first exhibition for mobile applications and
-                      electronic services (APPEX)</a
+                    <a href="https://www.appex-sd.com/" target="_blank">{{feature.title}}</a
                     >
                   </h3>
 
                   <div class="desc text-left">
                     <p>
-                      its interactive and responsive website that enable
-                      exhibitors and sponsors to subscribe in the exhibition
-                      directly from the website beside providing the visitors
-                      with all information about the exhibition and its related
-                      activities
+                      {{feature.summary}}
                     </p>
                   </div>
                   <!--//desc-->
                   <a
                     class="btn btn-cta-secondary"
-                    href="https://www.appex-sd.com/"
+                    :href="feature.url"
                     target="_blank"
                     ><i class="fas fa-thumbs-up"></i>Go To Website</a
                   >
@@ -85,23 +79,24 @@ export default {
     data() {
       return {
         portfolios: {},
+        featuredPortfolios: {},
         uploadPath: '/storage/uploads/',
       }
     },
     methods: {
       getPortfolios() {
         axios.get('/api/portfolios').then((res) => {
-          this.portfolios = res.data;
-          console.log(this.portfolios);
+          if(res.data) {
+            this.portfolios = res.data.filter((portfolio) => portfolio.featured !== 1);
+            this.featuredPortfolios = res.data.filter((portfolio) => portfolio.featured == 1);
+          }
+          
         }).catch(err => {
           console.log(err);
         });
       },
       getImageSrc(imgName) {
         return this.uploadPath+imgName;
-      },
-      getProjectUrl(url) {
-        return 'http:/'+url;
       }
     },
     mounted() {

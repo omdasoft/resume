@@ -4224,16 +4224,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       portfolios: {},
+      featuredPortfolios: {},
       uploadPath: '/storage/uploads/'
     };
   },
@@ -4242,17 +4237,20 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('/api/portfolios').then(function (res) {
-        _this.portfolios = res.data;
-        console.log(_this.portfolios);
+        if (res.data) {
+          _this.portfolios = res.data.filter(function (portfolio) {
+            return portfolio.featured !== 1;
+          });
+          _this.featuredPortfolios = res.data.filter(function (portfolio) {
+            return portfolio.featured == 1;
+          });
+        }
       })["catch"](function (err) {
         console.log(err);
       });
     },
     getImageSrc: function getImageSrc(imgName) {
       return this.uploadPath + imgName;
-    },
-    getProjectUrl: function getProjectUrl(url) {
-      return 'http:/' + url;
     }
   },
   mounted: function mounted() {
@@ -72582,7 +72580,72 @@ var render = function() {
         "div",
         { staticClass: "content" },
         [
-          _vm._m(0),
+          _vm._l(_vm.featuredPortfolios, function(feature) {
+            return _c(
+              "div",
+              { key: feature.id, staticClass: "item featured text-center" },
+              [
+                _c("div", { staticClass: "featured-image has-ribbon" }, [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: "https://www.appex-sd.com/",
+                        target: "_blank"
+                      }
+                    },
+                    [
+                      _c("img", {
+                        staticClass:
+                          "img-fluid project-image rounded shadow-sm",
+                        attrs: {
+                          src: _vm.getImageSrc(feature.image.image_name),
+                          alt: "project name"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(0, true)
+                ]),
+                _vm._v(" "),
+                _c("h3", { staticClass: "title mb-3" }, [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: "https://www.appex-sd.com/",
+                        target: "_blank"
+                      }
+                    },
+                    [_vm._v(_vm._s(feature.title))]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "desc text-left" }, [
+                  _c("p", [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(feature.summary) +
+                        "\n              "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-cta-secondary",
+                    attrs: { href: feature.url, target: "_blank" }
+                  },
+                  [
+                    _c("i", { staticClass: "fas fa-thumbs-up" }),
+                    _vm._v("Go To Website")
+                  ]
+                )
+              ]
+            )
+          }),
           _vm._v(" "),
           _c("hr", { staticClass: "divider" }),
           _vm._v(" "),
@@ -72644,52 +72707,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "item featured text-center" }, [
-      _c("div", { staticClass: "featured-image has-ribbon" }, [
-        _c(
-          "a",
-          { attrs: { href: "https://www.appex-sd.com/", target: "_blank" } },
-          [
-            _c("img", {
-              staticClass: "img-fluid project-image rounded shadow-sm",
-              attrs: { src: "/images/projects/appex.png", alt: "project name" }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "ribbon" }, [
-          _c("div", { staticClass: "text" }, [_vm._v("New")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("h3", { staticClass: "title mb-3" }, [
-        _c(
-          "a",
-          { attrs: { href: "https://www.appex-sd.com/", target: "_blank" } },
-          [
-            _vm._v(
-              "Sudan's first exhibition for mobile applications and\n                electronic services (APPEX)"
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "desc text-left" }, [
-        _c("p", [
-          _vm._v(
-            "\n                its interactive and responsive website that enable\n                exhibitors and sponsors to subscribe in the exhibition\n                directly from the website beside providing the visitors\n                with all information about the exhibition and its related\n                activities\n              "
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-cta-secondary",
-          attrs: { href: "https://www.appex-sd.com/", target: "_blank" }
-        },
-        [_c("i", { staticClass: "fas fa-thumbs-up" }), _vm._v("Go To Website")]
-      )
+    return _c("div", { staticClass: "ribbon" }, [
+      _c("div", { staticClass: "text" }, [_vm._v("New")])
     ])
   }
 ]
