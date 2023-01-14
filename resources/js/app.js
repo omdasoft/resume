@@ -15,8 +15,15 @@ Vue.component('dashboard-navbar', require('./dashboard/components/TheNavbar.vue'
 Vue.component('dashboard-sidebar', require('./dashboard/components/TheSidebar.vue').default);
 Vue.component('dashboard-footer', require('./dashboard/components/TheFooter.vue').default);
 Vue.component('dashboard-layout-component', require('./layouts/Dashboard.vue').default);
-
-
+// Import overlay loading component
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+Vue.use(Loading, {
+  container: null,
+  color: '#66cb8c',
+  height: 120,
+  width: 120,
+});
 import { Form, HasError, AlertError } from 'vform';
 window.Form = Form;
 Vue.component(HasError.name, HasError)

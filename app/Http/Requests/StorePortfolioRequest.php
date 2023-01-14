@@ -31,7 +31,6 @@ class StorePortfolioRequest extends FormRequest
                 'summary' => 'required',
                 'url' => 'required',
                 'github_url',
-                //'featured' => "unique:portfolios,featured,{$this->portfolio->id}",
             ];
         }
         return [
@@ -40,7 +39,6 @@ class StorePortfolioRequest extends FormRequest
             'url' => 'required',
             'github_url',
             'image' => 'required|image|mimes:jpg,jpeg,png',
-            'featured' => 'unique:portfolios,featured',
         ];
     }
 }

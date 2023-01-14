@@ -78,6 +78,7 @@
 export default {
     data() {
       return {
+        fullPage: false,
         portfolios: {},
         featuredPortfolios: {},
         uploadPath: '/storage/uploads/',
@@ -85,14 +86,17 @@ export default {
     },
     methods: {
       getPortfolios() {
+        let loader = this.$loading.show();
         axios.get('/api/portfolios').then((res) => {
           if(res.data) {
             this.portfolios = res.data.filter((portfolio) => portfolio.featured !== 1);
             this.featuredPortfolios = res.data.filter((portfolio) => portfolio.featured == 1);
+            loader.hide();
           }
           
         }).catch(err => {
           console.log(err);
+          loader.hide();
         });
       },
       getImageSrc(imgName) {

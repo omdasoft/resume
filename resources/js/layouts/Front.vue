@@ -22,6 +22,7 @@
  export default {
   data() {
     return {
+        fullPage: false,
         profile: {},
         profileImageSrc: '',
         cvSrc: '',
@@ -29,13 +30,15 @@
   },
   methods: {
     getProfile() {
+      let loader = this.$loading.show();
       axios.get('/api/profiles').then((res) => {
-        
         this.profile = res.data;
         this.profileImageSrc = '/storage/uploads/'+this.profile.image.image_name;
         this.cvSrc = '/storage/uploads/'+this.profile.cv;
+        loader.hide();
       }).catch(err => {
         console.log(err);
+        loader.hide();
       });
     }
   },

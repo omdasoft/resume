@@ -11,10 +11,6 @@ class Portfolio extends Model
 {
     use HasFactory;
 
-    // protected $casts = [
-    //     'featured' => 'boolean',
-    // ];
-
     protected $fillable = [
         'title',
         'summary',
