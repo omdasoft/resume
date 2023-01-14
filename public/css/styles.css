@@ -351,6 +351,10 @@ a.dotted-link:hover {
   right: 0;
 }
 
+.about .summary {
+  text-align: justify;
+}
+
 /* Projects Section */
 .projects .item {
   margin-bottom: 30px;

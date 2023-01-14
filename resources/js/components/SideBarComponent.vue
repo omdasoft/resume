@@ -14,11 +14,11 @@
                     ><span class="sr-only">Email:</span
                     ><a>{{profile.email}}</a>
                   </li>
-                  <li>
+                  <!-- <li>
                     <i class="fas fa-phone"></i
                     ><span class="sr-only">Phone:</span
                     ><a>{{profile.phone}}</a>
-                  </li>
+                  </li> -->
                   <li>
                     <i class="fas fa-external-link-alt"></i>
                     <span class="sr-only">GitHub:</span>

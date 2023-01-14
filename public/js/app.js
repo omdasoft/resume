@@ -68799,12 +68799,6 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("li", [
-              _c("i", { staticClass: "fas fa-phone" }),
-              _c("span", { staticClass: "sr-only" }, [_vm._v("Phone:")]),
-              _c("a", [_vm._v(_vm._s(_vm.profile.phone))])
-            ]),
-            _vm._v(" "),
-            _c("li", [
               _c("i", { staticClass: "fas fa-external-link-alt" }),
               _vm._v(" "),
               _c("span", { staticClass: "sr-only" }, [_vm._v("GitHub:")]),
