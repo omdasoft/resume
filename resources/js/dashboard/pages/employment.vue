@@ -273,7 +273,7 @@ import moment from 'moment';
             deleteEmploymentDetails(id) {
                 if(confirm("are you sure you want to delete this record ?")) {
                     var detailId = id;
-                    axios.delete('/api/details/'+id).then((res) => {
+                    axios.delete('/api/employments/details/'+id).then((res) => {
                         var index = this.formData.employment_details.map(function(detail) {
                             return detail.id;
                         }).indexOf(detailId);

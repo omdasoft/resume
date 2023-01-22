@@ -3312,7 +3312,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
       if (confirm("are you sure you want to delete this record ?")) {
         var detailId = id;
-        axios["delete"]('/api/details/' + id).then(function (res) {
+        axios["delete"]('/api/employments/details/' + id).then(function (res) {
           var index = _this5.formData.employment_details.map(function (detail) {
             return detail.id;
           }).indexOf(detailId);

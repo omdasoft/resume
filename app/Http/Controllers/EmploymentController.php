@@ -107,4 +107,11 @@ class EmploymentController extends Controller
         $message = "employment deleted successfully";
         return response()->json($message, 200);
     }
+
+    public function deleteDetails($id)
+    {
+        EmploymentDetails::findOrFail($id)->delete();
+        $message = "employment details deleted successfully";
+        return response()->json($message, 200);
+    }
 }
