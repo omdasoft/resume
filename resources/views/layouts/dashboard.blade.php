@@ -27,6 +27,6 @@
 <script src="/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/admin/js/adminlte.min.js"></script>
-<script src="/js/app.js"></script>
+<script src="{{ mix('/js/app.js') }}"></script>
 </body>
 </html>
