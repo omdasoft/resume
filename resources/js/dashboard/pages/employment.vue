@@ -112,13 +112,16 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="github">Start Date</label>
-                                        <input type="date" v-model="formData.start_date" id="startDate" class="form-control">
+                                        <!--input type="date" v-model="formData.start_date" id="startDate" class="form-control"-->
+                                        <date-picker v-model="formData.start_date" :config="options"></date-picker>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="linkedin">End Date</label>
-                                        <input type="date" v-model="formData.end_date" id="endDate" class="form-control" :disabled="disableEndDateField"><br>
+                                        <!--input type="date" v-model="formData.end_date" id="endDate" class="form-control" :disabled="disableEndDateField"-->
+                                        <date-picker v-model="formData.end_date" :config="options" :disabled="disableEndDateField"></date-picker>
+                                        <br>
                                         <input class="form-check-input ml-1" v-model="formData.until_now" :value="formData.until_now" @change="untilNowFieldChange" type="checkbox" id="untilNow">
                                         <label class="form-check-label ml-4" for="untilNow">
                                             Until Now
@@ -160,22 +163,31 @@
     </div>
 </template>
 <script>
+// Import vue bootstrap datepicker with its dependencies 
+import datePicker from 'vue-bootstrap-datetimepicker';
+import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
+//import moment 
 import moment from 'moment';
     export default {
         data() {
             return {
+                //date: new Date(),
+                options: {
+                    format: 'YYYY-MM-DD',
+                    useCurrent: false,
+                },       
                 employmentData: {},
                 employmentDetails: {},
                 startDate:"",
                 editMode:false,
-                disableEndDateField:"",
+                disableEndDateField:false,
                 formData: new Form({
                     id:"",
                     company:"",
                     designation:"",
                     country:"",
-                    start_date:"",
-                    end_date:"",
+                    start_date: new Date(),
+                    end_date: new Date(),
                     until_now:"",
                     employment_details:[{
                         id:"",
@@ -185,6 +197,9 @@ import moment from 'moment';
                 }),
                 errors:""
             }
+        },
+         components: {
+            datePicker
         },
         methods: {
             getEmploymentData() {
@@ -246,9 +261,11 @@ import moment from 'moment';
                 });
             },
             untilNowFieldChange() {
-                this.disableEndDateField = this.disableEndDateField === true ? false : true;
+                //this.disableEndDateField = this.disableEndDateField === true ? false : true;
                 if(this.formData.until_now === true) {
-                    this.formData.end_date = "";
+                    this.disableEndDateField =true;
+                }else{
+                    this.disableEndDateField =false;
                 }
             },
             deleteEmployment(id) {
