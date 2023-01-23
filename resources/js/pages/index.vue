@@ -25,9 +25,11 @@
                     <span class="place"
                       ><a href="#">{{employment.company}} – {{employment.country}}</a></span
                     >
-                    <span class="year">({{employment.start_date}} - {{employment.until_now===1?'present':employment.end_date}})</span>
+                    <span class="year">({{employment.start_date|formatDate}}</span> - 
+                    <span class="year" v-if="employment.until_now == 1">present)</span>
+                    <span class="year" v-else>{{employment.end_date|formatDate}})</span>
                   </h3>
-                  <ul>
+                  <ul class="details">
                     <li v-for="details in employment.employment_details" :key="details.id">{{details.desc}}</li>
                   </ul>
                 </div>
@@ -39,11 +41,18 @@
     </div>
 </template>
 <script>
+//import moment 
+import moment from 'moment';
 export default {
     data() {
       return {
         profile: {},
         employments: {}
+      }
+    },
+    filters: {
+      formatDate: function(value) {
+        return moment(value).format('MM/YYYY');
       }
     },
     methods: {
@@ -68,7 +77,7 @@ export default {
 }
 </script>
 <style scoped>
-  .summary{
+  .summary, .details{
     line-height: 2em;
   }
 </style>
