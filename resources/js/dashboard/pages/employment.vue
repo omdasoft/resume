@@ -22,7 +22,7 @@
                                     <td>{{ employment.country }}</td>
                                     <td>{{ employment.start_date }}</td>
                                     <td>
-                                        <span v-if="employment.until_now === 1">Until now</span>
+                                        <span v-if="employment.until_now == 1">Until now</span>
                                         <span v-else>{{employment.end_date}}</span>
                                     </td>
                                     <td>
