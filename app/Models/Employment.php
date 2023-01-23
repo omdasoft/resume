@@ -25,12 +25,4 @@ class Employment extends Model
     public function employmentDetails () {
         return $this->hasMany(EmploymentDetails::class);
     }
-
-    public function getStartDateAttribute() {
-        return $this->attributes['start_date'] = Carbon::parse($this->attributes['start_date'])->format('Y/m/d');
-    }
-
-    public function getEndDateAttribute() {
-        return $this->attributes['end_date'] = Carbon::parse($this->attributes['end_date'])->format('Y/m/d');
-    }
 }

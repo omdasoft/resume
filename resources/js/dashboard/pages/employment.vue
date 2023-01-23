@@ -186,8 +186,8 @@ import moment from 'moment';
                     company:"",
                     designation:"",
                     country:"",
-                    start_date: new Date(),
-                    end_date: new Date(),
+                    start_date:"",
+                    end_date:"",
                     until_now:"",
                     employment_details:[{
                         id:"",
