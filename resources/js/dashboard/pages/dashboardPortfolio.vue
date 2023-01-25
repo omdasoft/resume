@@ -179,7 +179,7 @@ export default {
             this.editMode = true;
             this.formData.id = portfolio.id;
             this.formData.title = portfolio.title;
-            this.formData.summary = portfolio.title;
+            this.formData.summary = portfolio.summary;
             this.formData.url = portfolio.url;
             this.formData.github_url = portfolio.github_url;
             this.formData.featured = portfolio.featured;
