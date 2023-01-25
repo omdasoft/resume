@@ -90,7 +90,7 @@ export default {
   methods: {
     sendMessage() {
       this.form.post("/send_message").then(response => {
-        Toast.fire("success", "The Message has send seccessfully", "success");
+        Toast.fire("success", "Thank you for your message, will get back to you ASAP :)", "success");
         
         //reset the form
         this.form.reset();

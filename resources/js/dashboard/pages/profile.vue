@@ -244,7 +244,6 @@
                     }
                 }).then((res) => {
                     this.$refs.Close.click();
-                    console.log(res.data);
                     this.getProfileInfo();
                     Toast.fire(
                             "success",

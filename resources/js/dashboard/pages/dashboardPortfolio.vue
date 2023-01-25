@@ -250,7 +250,6 @@ export default {
                     'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
                 }
             }).then((res) => {
-                console.log(res.data);
                 this.$refs.Close.click();
                 this.getPortfolioData();
                 Toast.fire(

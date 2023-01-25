@@ -71,7 +71,7 @@
                     </div>
                     <div class="modal-body">
                         <div v-if="errors">
-                            <div v-for="error in errors" class="alert alert-danger">{{ error }}</div>
+                            <div v-for="(error, index) in errors" class="alert alert-danger" :key="index">{{ error }}</div>
                         </div>
                         <form @submit.prevent="editMode === true ? updateSkills():storeSkills()" method="post">
                             <div class="row">
