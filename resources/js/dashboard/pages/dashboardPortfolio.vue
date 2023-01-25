@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input class="form-check-input ml-1" v-model="formData.featured" :value="formData.featured" @change="onFeaturedChange" type="checkbox" id="featured">
+                                        <input class="form-check-input ml-1" v-model="formData.featured" @change="onFeaturedChange" type="checkbox" id="featured">
                                         <label class="form-check-label ml-4" for="featured">
                                             Featured
                                         </label>
@@ -182,7 +182,7 @@ export default {
             this.formData.summary = portfolio.summary;
             this.formData.url = portfolio.url;
             this.formData.github_url = portfolio.github_url;
-            this.formData.featured = portfolio.featured;
+            this.formData.featured = portfolio.featured == 1?1:0;
             this.image = "";
             if(portfolio.image) {
                 this.imageSrc = this.path+portfolio.image.image_name;
