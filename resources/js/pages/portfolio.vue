@@ -5,7 +5,7 @@
               <div class="content">
                 <div class="item featured text-center" v-for="feature in featuredPortfolios" :key="feature.id">
                   <div class="featured-image has-ribbon">
-                    <a href="https://www.appex-sd.com/" target="_blank">
+                    <a :href="feature.url" target="new">
                       <img
                         class="img-fluid project-image rounded shadow-sm"
                         :src="getImageSrc(feature.image.image_name)"
@@ -18,7 +18,7 @@
                   </div>
 
                   <h3 class="title mb-3">
-                    <a href="https://www.appex-sd.com/" target="_blank">{{feature.title}}</a
+                    <a :href="feature.url" target="new">{{feature.title}}</a
                     >
                   </h3>
 
@@ -31,14 +31,14 @@
                   <a
                     class="btn btn-cta-secondary"
                     :href="feature.url"
-                    target="_blank"
+                    target="new"
                     ><i class="fas fa-thumbs-up"></i>Go To Website</a
                   >
                 </div>
                 <!--//item-->
                 <hr class="divider" />
                 <div class="item row" v-for="portfolio in portfolios" :key="portfolio.id">
-                  <a class="col-md-4 col-12" href="#">
+                  <a class="col-md-4 col-12" :href="portfolio.url" target="new">
                     <img
                       class="img-fluid project-image rounded shadow-sm"
                       :src="getImageSrc(portfolio.image.image_name)"
@@ -47,9 +47,7 @@
                   </a>
                   <div class="desc col-md-8 col-12">
                     <h3 class="title">
-                      <a href="#"
-                        >{{portfolio.title}}</a
-                      >
+                      <a :href="portfolio.url" target="new">{{portfolio.title}}</a>
                     </h3>
                     <p class="mb-2">
                       {{portfolio.summary}}
@@ -89,8 +87,8 @@ export default {
         let loader = this.$loading.show();
         axios.get('/api/portfolios').then((res) => {
           if(res.data) {
-            this.portfolios = res.data.filter((portfolio) => portfolio.featured !== 1);
-            this.featuredPortfolios = res.data.filter((portfolio) => portfolio.featured == 1);
+            this.portfolios = res.data.filter((portfolio) => parseInt(portfolio.featured) !== 1);
+            this.featuredPortfolios = res.data.filter((portfolio) => parseInt(portfolio.featured) == 1);
             loader.hide();
           }
           
