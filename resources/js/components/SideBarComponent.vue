@@ -53,7 +53,7 @@
                     </div>
                   </div>
                   <!-- // item -->
-                  <p><a class="more-link" :href="cvSrc" download><i class="far fa-file-pdf fa-2x"></i> More on Cv</a></p> 
+                  <p><a class="more-link cv" @click="downloadCv(profile.cv)"><i class="far fa-file-pdf fa-2x"></i> More on Cv</a></p> 
 
                 </div>
               </div>
@@ -164,6 +164,17 @@ import moment from 'moment'
         }).catch(err => {
           console.log(err);
         });
+      },
+      downloadCv(cv) {
+        axios.get('/api/download/'+cv, {responseType: 'arraybuffer'}).then((res) => {
+          let blob = new Blob([res.data], { type: 'application/pdf' })
+          let link = document.createElement('a')
+          link.href = window.URL.createObjectURL(blob)
+          link.download = cv
+          link.click()
+        }).catch(erroe => {
+          console.log(error);
+        });
       }
     },
     mounted() {
@@ -173,4 +184,9 @@ import moment from 'moment'
     }
   }
 </script>
+<style scoped>
+  .cv:hover{
+    cursor: pointer;
+  }
+</style>
 

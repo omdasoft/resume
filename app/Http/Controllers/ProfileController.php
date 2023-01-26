@@ -8,6 +8,7 @@ use App\Models\Profile;
 use App\Models\Image;
 use App\Traits\FileUpload;
 use DB;
+use Storage;
 class ProfileController extends Controller
 {
     use FileUpload;
@@ -110,6 +111,22 @@ class ProfileController extends Controller
         }catch(\Exception $e) {
             DB::rollback();
             return response()->json($e->getMessage, 404);
+        }
+    }
+
+    /**
+     * Download cv file
+     * 
+     * @param string $fileName
+     * @return \Illuminate\Http\Response
+    */
+    public function download($fileName)
+    {
+        if($this->checkIfFileExists($fileName)) {
+            $path = Storage::disk('public')->path("uploads/$fileName");
+    	    return response()->download($path, $fileName, ['Content-Type: application/pdf']);
+        }else {
+            abort('file not found', 404);
         }
     }
 

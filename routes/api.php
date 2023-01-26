@@ -26,5 +26,4 @@ Route::apiResource('portfolios', PortfolioController::class);
 Route::apiResource('educations', EducationController::class);
 Route::apiResource('skills', SkillController::class);
 Route::delete('/employments/details/{id}', [EmploymentController::class, 'deleteDetails']);
-//front end apis
-Route::get('/myContacts', [\App\Http\Controllers\IndexController::class, 'myContacts']);
+Route::get('/download/{fileName}', [ProfileController::class, 'download']);
