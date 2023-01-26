@@ -79,7 +79,7 @@
                     </div>
                     <div class="modal-body">
                         <div v-if="errors">
-                            <div v-for="(key, error) in errors" class="alert alert-danger" :key="key">{{ error }}</div>
+                            <div v-for="(error, key) in errors" class="alert alert-danger" :key="key">{{ error }}</div>
                         </div>
                         <form @submit.prevent="editMode === true ? updateEducation():storeEducation()" method="post">
                             <div class="row">
@@ -116,12 +116,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="from">From</label>
-                                        <input type="date" v-model="formData.from" id="from" class="form-control">
+                                        <date-picker v-model="formData.from" :config="options"></date-picker>
+                                        <!--input type="date" v-model="formData.from" id="from" class="form-control"-->
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="to">To</label>
-                                    <input type="date" v-model="formData.to" id="to" class="form-control">
+                                    <!--input type="date" v-model="formData.to" id="to" class="form-control" -->
+                                    <date-picker v-model="formData.to" :config="options"></date-picker>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -147,9 +149,18 @@
     </div>
 </template>
 <script>
+    // Import vue bootstrap datepicker with its dependencies 
+    import datePicker from 'vue-bootstrap-datetimepicker';
+    import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
+    //import moment 
+    import moment from 'moment';
     export default {
         data() {
             return {
+                options: {
+                    format: 'YYYY-MM-DD',
+                    useCurrent: false,
+                },    
                 educationInfo: {},
                 editMode:false,
                 formData: new Form({
@@ -164,6 +175,9 @@
                 errors:"",
             }
         },
+        components: {
+            datePicker
+        },
         methods: {
             getEducationInfo() {
                 axios.get('/api/educations').then((res) => {
@@ -173,11 +187,13 @@
             createEducationModal() {
                 this.editMode = false;
                 this.formData.reset();
+                this.errors = ""
                 $('#createEditEducation').modal('show');
             },
             updateEducationModal(education) {
                 this.editMode = true;
                 this.formData.fill(education);
+                this.errors = ""
                 $('#createEditEducation').modal('show');
             },
             storeEducation() {
