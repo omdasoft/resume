@@ -23,10 +23,10 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'omda',
-            'email' => 'omdasoft@hotmail.com',
+            'name' => 'admin',
+            'email' => 'admin@admin.test',
             'email_verified_at' => now(),
-            'password' => bcrypt('omdaozil1992'), //omdaozil1992
+            'password' => bcrypt('admin123'), //admin123
             'remember_token' => Str::random(10),
         ];
     }
