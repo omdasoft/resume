@@ -13,7 +13,80 @@
             <!--//section-inner-->
           </section>
           <!--//section-->
+          <!--start latest project section-->
+          <section class="latest section">
+            <div class="section-inner shadow-sm rounded">
+              <h2 class="heading">Latest Projects</h2>
+              <div class="content">
+                <div class="item featured text-center" v-for="feature in featuredPortfolios" :key="feature.id">
+                  <div class="featured-image has-ribbon">
+                    <a :href="feature.url" target="new">
+                      <img
+                        class="img-fluid project-image rounded shadow-sm"
+                        :src="getImageSrc(feature.image.image_name)"
+                        alt="project name"
+                      />
+                    </a>
+                    <div class="ribbon">
+                      <div class="text">New</div>
+                    </div>
+                  </div>
 
+                  <h3 class="title mb-3">
+                    <a :href="feature.url" target="new">{{feature.title}}</a
+                    >
+                  </h3>
+
+                  <div class="desc text-left">
+                    <p>
+                      {{feature.summary}}
+                    </p>
+                  </div>
+                  <!--//desc-->
+                  <a
+                    class="btn btn-cta-secondary"
+                    :href="feature.url"
+                    target="new"
+                    ><i class="fas fa-thumbs-up"></i>Go To Website</a
+                  >
+                </div>
+                <!--//item-->
+                <hr class="divider" />
+                <div class="item row" v-for="portfolio in portfolios" :key="portfolio.id">
+                  <a class="col-md-4 col-12" :href="portfolio.url" target="new">
+                    <img
+                      class="img-fluid project-image rounded shadow-sm"
+                      :src="getImageSrc(portfolio.image.image_name)"
+                      alt="project name"
+                    />
+                  </a>
+                  <div class="desc col-md-8 col-12">
+                    <h3 class="title">
+                      <a :href="portfolio.url" target="new">{{portfolio.title}}</a>
+                    </h3>
+                    <p class="mb-2">
+                      {{portfolio.summary}}
+                    </p>
+                    <p>
+                      <a
+                        class="more-link"
+                        :href="portfolio.url"
+                        target="new"
+                      
+                        ><i class="fas fa-external-link-alt"></i>Find out
+                        more</a
+                      >
+                    </p>
+                  </div>
+                  <!--//desc-->
+                </div>
+                <!--//item-->      
+              </div>
+              <!--//content-->
+            </div>
+            <!--//section-inner-->
+          </section>
+          <!--end latest project section-->
           <section class="experience section">
             <div class="section-inner shadow-sm rounded">
               <h2 class="heading">Work Experience</h2>
@@ -47,6 +120,9 @@ export default {
     data() {
       return {
         profile: {},
+        portfolios: {},
+        featuredPortfolios: {},
+        uploadPath: '/storage/uploads/',
         employments: {}
       }
     },
@@ -57,21 +133,37 @@ export default {
     },
     methods: {
       getProfile() {
-        axios.get('/api/profiles').then((res) => {
-          this.profile = res.data;
+        axios.get('/api/frontend/profile').then((res) => {
+          this.profile = res.data.data;
         }).catch(err => {
           console.log(err);
         });
       },
       getEmployments() {
-        axios.get('/api/employments').then((res) => {
-            this.employments = res.data;
+        axios.get('/api/frontend/employment').then((res) => {
+            this.employments = res.data.data;
         });
       },
+      getPortfolios() {
+        axios.get('/api/frontend/latest_projects').then((res) => {
+          if(res.data.data) {
+            console.log(res.data.data);
+            this.portfolios = res.data.data.filter((portfolio) => parseInt(portfolio.featured) !== 1);
+            this.featuredPortfolios = res.data.data.filter((portfolio) => parseInt(portfolio.featured) == 1);
+          }
+          
+        }).catch(err => {
+          console.log(err);
+        });
+      },
+      getImageSrc(imgName) {
+        return this.uploadPath+imgName;
+      }
     },
     mounted() {
       this.getProfile();
       this.getEmployments();
+      this.getPortfolios();
       console.log('index page mounted');
     }
 }

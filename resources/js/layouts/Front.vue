@@ -31,8 +31,8 @@
   methods: {
     getProfile() {
       let loader = this.$loading.show();
-      axios.get('/api/profiles').then((res) => {
-        this.profile = res.data;
+      axios.get('/api/frontend/profile').then((res) => {
+        this.profile = res.data.data;
         this.profileImageSrc = '/storage/uploads/'+this.profile.image.image_name;
         this.cvSrc = '/storage/uploads/'+this.profile.cv;
         loader.hide();

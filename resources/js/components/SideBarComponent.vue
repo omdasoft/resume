@@ -152,8 +152,8 @@ import moment from 'moment'
     },
     methods:{
       getSkills() {
-        axios.get('/api/skills').then((res) => {
-          this.skills = res.data;
+        axios.get('/api/frontend/skills').then((res) => {
+          this.skills = res.data.data;
         }).catch(err => {
           console.log(err);
         });
