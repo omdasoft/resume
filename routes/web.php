@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\Frontend\FrontendController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,14 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [App\Http\Controllers\IndexController::class, 'index']);
-
-Route::post('/send_message',[App\Http\Controllers\IndexController::class,'sendMessage']);
+Route::get('/', [FrontendController::class, 'index']);
 
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
 //default router handler
-Route::get('{path}', [App\Http\Controllers\IndexController::class, 'index'])->where('path','([A-z\d\-\/_.]+)?');
+Route::get('{path}', [FrontendController::class, 'index'])->where('path','([A-z\d\-\/_.]+)?');
 

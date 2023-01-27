@@ -9,7 +9,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\SkillController;
-use App\Http\Controllers\Frontend\Api\FrontEndController;
+use App\Http\Controllers\Api\Frontend\FrontendController;
 /*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -30,11 +30,11 @@ Route::get('/download/{fileName}', [ProfileController::class, 'download']);
 
 //frontend api routes
 Route::prefix('frontend')->group(function () {
-    Route::get('/profile', [FrontEndController::class, 'profile']);
-    Route::get('/employment', [FrontEndController::class, 'employment']);
-    Route::get('/latest_projects', [FrontEndController::class, 'latestProjects']);
-    Route::get('/featured_project', [FrontEndController::class, 'featuredProject']);
-    Route::get('/skills', [FrontEndController::class, 'skills']);
-    Route::get('/education', [FrontEndController::class, 'education']);
-    Route::post('/send_message', [FrontEndController::class, 'sendMessage']);
+    Route::get('/profile', [FrontendController::class, 'profile']);
+    Route::get('/employment', [FrontendController::class, 'employment']);
+    Route::get('/latest_projects', [FrontendController::class, 'latestProjects']);
+    Route::get('/featured_project', [FrontendController::class, 'featuredProject']);
+    Route::get('/skills', [FrontendController::class, 'skills']);
+    Route::get('/education', [FrontendController::class, 'education']);
+    Route::post('/send_message', [FrontendController::class, 'sendMessage']);
 });

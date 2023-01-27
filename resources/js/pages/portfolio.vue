@@ -1,7 +1,7 @@
 <template>
       <section class="latest section">
             <div class="section-inner shadow-sm rounded">
-              <h2 class="heading">Latest Projects</h2>
+              <h2 class="heading">All Projects</h2>
               <div class="content">
                 <div class="item featured text-center" v-for="feature in featuredPortfolios" :key="feature.id">
                   <div class="featured-image has-ribbon">

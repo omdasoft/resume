@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Api;
+namespace App\Http\Controllers\Api\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -18,8 +18,12 @@ use App\Http\Resources\EmploymentResource;
 use App\Http\Resources\PortfolioResource;
 use App\Http\Resources\ProfileResource;
 use App\Http\Resources\EducationResource;
-class FrontEndController extends Controller
+class FrontendController extends Controller
 {
+    public function index(){
+        return view('layouts.front');
+    }
+    
     public function profile() {
         $profile = Profile::first();
         return new ProfileResource($profile);
