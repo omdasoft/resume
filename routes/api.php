@@ -33,6 +33,7 @@ Route::prefix('frontend')->group(function () {
     Route::get('/profile', [FrontEndController::class, 'profile']);
     Route::get('/employment', [FrontEndController::class, 'employment']);
     Route::get('/latest_projects', [FrontEndController::class, 'latestProjects']);
+    Route::get('/featured_project', [FrontEndController::class, 'featuredProject']);
     Route::get('/skills', [FrontEndController::class, 'skills']);
     Route::get('/education', [FrontEndController::class, 'education']);
     Route::post('/send_message', [FrontEndController::class, 'sendMessage']);

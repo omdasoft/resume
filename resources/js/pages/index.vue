@@ -18,12 +18,12 @@
             <div class="section-inner shadow-sm rounded">
               <h2 class="heading">Latest Projects</h2>
               <div class="content">
-                <div class="item featured text-center" v-for="feature in featuredPortfolios" :key="feature.id">
+                <div class="item featured text-center">
                   <div class="featured-image has-ribbon">
-                    <a :href="feature.url" target="new">
+                    <a :href="featuredPortfolio.url" target="new">
                       <img
                         class="img-fluid project-image rounded shadow-sm"
-                        :src="getImageSrc(feature.image.image_name)"
+                        :src="getImageSrc(featuredPortfolio.image.image_name)"
                         alt="project name"
                       />
                     </a>
@@ -33,19 +33,19 @@
                   </div>
 
                   <h3 class="title mb-3">
-                    <a :href="feature.url" target="new">{{feature.title}}</a
+                    <a :href="featuredPortfolio.url" target="new">{{featuredPortfolio.title}}</a
                     >
                   </h3>
 
                   <div class="desc text-left">
                     <p>
-                      {{feature.summary}}
+                      {{featuredPortfolio.summary}}
                     </p>
                   </div>
                   <!--//desc-->
                   <a
                     class="btn btn-cta-secondary"
-                    :href="feature.url"
+                    :href="featuredPortfolio.url"
                     target="new"
                     ><i class="fas fa-thumbs-up"></i>Go To Website</a
                   >
@@ -121,7 +121,7 @@ export default {
       return {
         profile: {},
         portfolios: {},
-        featuredPortfolios: {},
+        featuredPortfolio: {},
         uploadPath: '/storage/uploads/',
         employments: {}
       }
@@ -144,14 +144,16 @@ export default {
             this.employments = res.data.data;
         });
       },
-      getPortfolios() {
+      getLatestProjects() {
         axios.get('/api/frontend/latest_projects').then((res) => {
-          if(res.data.data) {
-            console.log(res.data.data);
-            this.portfolios = res.data.data.filter((portfolio) => parseInt(portfolio.featured) !== 1);
-            this.featuredPortfolios = res.data.data.filter((portfolio) => parseInt(portfolio.featured) == 1);
-          }
-          
+            this.portfolios = res.data.data;
+        }).catch(err => {
+          console.log(err);
+        });
+      },
+      getFeaturedProject() {
+        axios.get('/api/frontend/featured_project').then((res) => {
+            this.featuredPortfolio = res.data.data;
         }).catch(err => {
           console.log(err);
         });
@@ -163,7 +165,8 @@ export default {
     mounted() {
       this.getProfile();
       this.getEmployments();
-      this.getPortfolios();
+      this.getLatestProjects();
+      this.getFeaturedProject();
       console.log('index page mounted');
     }
 }

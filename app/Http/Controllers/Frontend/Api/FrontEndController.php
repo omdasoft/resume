@@ -35,6 +35,11 @@ class FrontEndController extends Controller
         return PortfolioResource::collection($latesProjects);
     }
 
+    public function featuredProject() {
+        $featuredProject = Portfolio::with('image')->where('featured', 1)->first();
+        return new PortfolioResource($featuredProject);
+    }
+
     public function skills() {
         $skills = Skill::get();
         return SkillsResource::collection($skills);
