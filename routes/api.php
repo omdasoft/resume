@@ -10,6 +10,7 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\Api\Frontend\FrontendController;
+use App\Http\Controllers\Api\Frontend\PortfolioController as FrontendPortfolioController;
 /*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -37,4 +38,5 @@ Route::prefix('frontend')->group(function () {
     Route::get('/skills', [FrontendController::class, 'skills']);
     Route::get('/education', [FrontendController::class, 'education']);
     Route::post('/send_message', [FrontendController::class, 'sendMessage']);
+    Route::get('/portfolios', [FrontendPortfolioController::class, 'index']);
 });

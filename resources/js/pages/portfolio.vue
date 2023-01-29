@@ -85,10 +85,10 @@ export default {
     methods: {
       getPortfolios() {
         let loader = this.$loading.show();
-        axios.get('/api/portfolios').then((res) => {
-          if(res.data) {
-            this.portfolios = res.data.filter((portfolio) => parseInt(portfolio.featured) !== 1);
-            this.featuredPortfolios = res.data.filter((portfolio) => parseInt(portfolio.featured) == 1);
+        axios.get('/api/frontend/portfolios').then((res) => {
+          if(res.data.data) {
+            this.portfolios = res.data.data.filter((portfolio) => parseInt(portfolio.featured) !== 1);
+            this.featuredPortfolios = res.data.data.filter((portfolio) => parseInt(portfolio.featured) == 1);
             loader.hide();
           }
           
