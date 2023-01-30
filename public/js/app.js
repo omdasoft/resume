@@ -2491,6 +2491,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _apis_Education__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../apis/Education */ "./resources/js/dashboard/apis/Education.js");
 //
 //
 //
@@ -2640,6 +2641,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2660,7 +2662,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getEducationInfo: function getEducationInfo() {
       var _this = this;
-      axios.get('/api/educations').then(function (res) {
+      _apis_Education__WEBPACK_IMPORTED_MODULE_0__["default"].get().then(function (res) {
         _this.educationInfo = res.data;
       });
     },
@@ -2668,15 +2670,17 @@ __webpack_require__.r(__webpack_exports__);
       this.editMode = false;
       this.formData.reset();
       $('#createEditEducation').modal('show');
+      this.errors = "";
     },
     updateEducationModal: function updateEducationModal(education) {
       this.editMode = true;
       this.formData.fill(education);
       $('#createEditEducation').modal('show');
+      this.errors = "";
     },
     storeEducation: function storeEducation() {
       var _this2 = this;
-      this.formData.post('/api/educations/').then(function (res) {
+      _apis_Education__WEBPACK_IMPORTED_MODULE_0__["default"].store(this.formData).then(function (res) {
         _this2.$refs.Close.click();
         _this2.getEducationInfo();
         Toast.fire("success", "Education has been created Successfully", "success");
@@ -2693,7 +2697,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     updateEducation: function updateEducation() {
       var _this3 = this;
-      this.formData.put('/api/educations/' + this.formData.id).then(function (res) {
+      _apis_Education__WEBPACK_IMPORTED_MODULE_0__["default"].update(this.formData.id, this.formData).then(function (res) {
         _this3.$refs.Close.click();
         _this3.getEducationInfo();
         Toast.fire("success", "Education has been updated Successfully", "success");
@@ -2712,7 +2716,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteEducation: function deleteEducation(id) {
       var _this4 = this;
       if (confirm("are you sure you want to delete this record ?")) {
-        axios["delete"]('/api/educations/' + id).then(function (res) {
+        _apis_Education__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"](id).then(function (res) {
           _this4.getEducationInfo();
           Toast.fire("success", "Education has been deleted Successfully", "success");
         });
@@ -2738,6 +2742,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _apis_Portfolio__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../apis/Portfolio */ "./resources/js/dashboard/apis/Portfolio.js");
 //
 //
 //
@@ -2886,6 +2891,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2908,7 +2914,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getPortfolioData: function getPortfolioData() {
       var _this = this;
-      axios.get('/api/portfolios').then(function (res) {
+      _apis_Portfolio__WEBPACK_IMPORTED_MODULE_0__["default"].get().then(function (res) {
         _this.portfolios = res.data;
       });
     },
@@ -2955,11 +2961,7 @@ __webpack_require__.r(__webpack_exports__);
       _.each(this.formData, function (value, key) {
         formData.append(key, value);
       });
-      axios.post('/api/portfolios/', formData, {
-        headers: {
-          'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
-        }
-      }).then(function (res) {
+      _apis_Portfolio__WEBPACK_IMPORTED_MODULE_0__["default"].store(formData).then(function (res) {
         _this2.$refs.Close.click();
         _this2.getPortfolioData();
         Toast.fire("success", "Portfolio has been created successfully", "success");
@@ -2982,11 +2984,7 @@ __webpack_require__.r(__webpack_exports__);
         formData.append(key, value);
       });
       formData.append('_method', 'put');
-      axios.post('/api/portfolios/' + this.formData.id, formData, {
-        headers: {
-          'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
-        }
-      }).then(function (res) {
+      _apis_Portfolio__WEBPACK_IMPORTED_MODULE_0__["default"].update(this.formData.id, formData).then(function (res) {
         console.log(res.data);
         _this3.$refs.Close.click();
         _this3.getPortfolioData();
@@ -3005,7 +3003,7 @@ __webpack_require__.r(__webpack_exports__);
     deletePortfolio: function deletePortfolio(id) {
       var _this4 = this;
       if (confirm("are you sure you want to delete this record ?")) {
-        axios["delete"]('/api/portfolios/' + id).then(function (res) {
+        _apis_Portfolio__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"](id).then(function (res) {
           _this4.getPortfolioData();
           Toast.fire("success", "Portfolio has been deleted Successfully", "success");
         })["catch"](function (error) {
@@ -3040,6 +3038,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _apis_Employment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../apis/Employment */ "./resources/js/dashboard/apis/Employment.js");
 //
 //
 //
@@ -3201,6 +3200,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3231,7 +3231,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getEmploymentData: function getEmploymentData() {
       var _this = this;
-      axios.get('/api/employments').then(function (res) {
+      _apis_Employment__WEBPACK_IMPORTED_MODULE_1__["default"].get().then(function (res) {
         _this.employmentData = res.data;
       });
     },
@@ -3249,7 +3249,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     storeEmployment: function storeEmployment() {
       var _this2 = this;
-      this.formData.post('/api/employments').then(function (res) {
+      _apis_Employment__WEBPACK_IMPORTED_MODULE_1__["default"].store(this.formData).then(function (res) {
         _this2.$refs.Close.click();
         _this2.getEmploymentData();
         Toast.fire("success", "Employment Created Successfully", "success");
@@ -3266,7 +3266,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     updateEmployment: function updateEmployment() {
       var _this3 = this;
-      this.formData.put('/api/employments/' + this.formData.id).then(function (res) {
+      _apis_Employment__WEBPACK_IMPORTED_MODULE_1__["default"].update(this.formData.id, this.formData).then(function (res) {
         //console.log(res.data);
         _this3.$refs.Close.click();
         _this3.getEmploymentData();
@@ -3312,7 +3312,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
       if (confirm("are you sure you want to delete this record ?")) {
         var detailId = id;
-        axios["delete"]('/api/details/' + id).then(function (res) {
+        _apis_Employment__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"](id).then(function (res) {
           var index = _this5.formData.employment_details.map(function (detail) {
             return detail.id;
           }).indexOf(detailId);
@@ -3341,6 +3341,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _apis_Message__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../apis/Message */ "./resources/js/dashboard/apis/Message.js");
 //
 //
 //
@@ -3451,6 +3452,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -3464,7 +3466,7 @@ __webpack_require__.r(__webpack_exports__);
     getMessages: function getMessages() {
       var _this = this;
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get("/api/get_messages?page=" + page).then(function (response) {
+      _apis_Message__WEBPACK_IMPORTED_MODULE_0__["default"].get().then(function (response) {
         _this.messages = response.data;
       });
     },
@@ -3483,11 +3485,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: "Yes, delete it!"
       }).then(function (result) {
         if (result.value) {
-          axios.get('/api/delete_message', {
-            params: {
-              id: id
-            }
-          }).then(function (response) {
+          _apis_Message__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"](id).then(function (response) {
             _this2.getMessages();
             Toast.fire("success", "The Message has deleted seccessfully", "success");
           });
@@ -3514,6 +3512,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _apis_Profile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../apis/Profile */ "./resources/js/dashboard/apis/Profile.js");
 //
 //
 //
@@ -3691,6 +3690,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+//import Csrf from '../apis/Csrf';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -3718,7 +3719,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getProfileInfo: function getProfileInfo() {
       var _this = this;
-      axios.get("/api/profiles").then(function (response) {
+      _apis_Profile__WEBPACK_IMPORTED_MODULE_0__["default"].get().then(function (response) {
         _this.profileInfo = response.data;
       });
     },
@@ -3755,11 +3756,7 @@ __webpack_require__.r(__webpack_exports__);
         formData.append(key, value);
       });
       formData.append('_method', 'put');
-      axios.post('/api/profiles/' + this.formData.id, formData, {
-        headers: {
-          'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
-        }
-      }).then(function (res) {
+      _apis_Profile__WEBPACK_IMPORTED_MODULE_0__["default"].update(this.formData.id, formData).then(function (res) {
         _this2.$refs.Close.click();
         console.log(res.data);
         _this2.getProfileInfo();
@@ -3783,11 +3780,7 @@ __webpack_require__.r(__webpack_exports__);
       _.each(this.formData, function (value, key) {
         formData.append(key, value);
       });
-      axios.post('/api/profiles/', formData, {
-        headers: {
-          'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
-        }
-      }).then(function (res) {
+      _apis_Profile__WEBPACK_IMPORTED_MODULE_0__["default"].store(formData).then(function (res) {
         _this3.$refs.Close.click();
         _this3.getProfileInfo();
         Toast.fire("success", "Profile created seccessfully", "success");
@@ -3822,6 +3815,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _apis_Skills__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../apis/Skills */ "./resources/js/dashboard/apis/Skills.js");
 //
 //
 //
@@ -3935,6 +3929,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -3951,7 +3946,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getSkills: function getSkills() {
       var _this = this;
-      axios.get('/api/skills').then(function (res) {
+      _apis_Skills__WEBPACK_IMPORTED_MODULE_0__["default"].get().then(function (res) {
         _this.skills = res.data;
       });
     },
@@ -3969,7 +3964,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     storeSkills: function storeSkills() {
       var _this2 = this;
-      this.formData.post('/api/skills/').then(function (res) {
+      _apis_Skills__WEBPACK_IMPORTED_MODULE_0__["default"].store(this.formData).then(function (res) {
         _this2.$refs.Close.click();
         _this2.getSkills();
         Toast.fire("success", "Skill has been created Successfully", "success");
@@ -3986,7 +3981,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     updateSkills: function updateSkills() {
       var _this3 = this;
-      this.formData.put('/api/skills/' + this.formData.id).then(function (res) {
+      _apis_Skills__WEBPACK_IMPORTED_MODULE_0__["default"].update(this.formData.id, this.formData).then(function (res) {
         _this3.$refs.Close.click();
         _this3.getSkills();
         Toast.fire("success", "Skill has been updated Successfully", "success");
@@ -4013,7 +4008,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: "Yes, delete it!"
       }).then(function (result) {
         if (result.value) {
-          axios["delete"]('/api/skills/' + id).then(function (res) {
+          _apis_Skills__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"](id).then(function (res) {
             _this4.getSkills();
             Toast.fire("success", "Skill has been deleted Successfully", "success");
           });
@@ -4563,6 +4558,198 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/apis/Api.js":
+/*!********************************************!*\
+  !*** ./resources/js/dashboard/apis/Api.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var Api = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
+  baseURL: "http://127.0.0.1:8000/api"
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Api);
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/apis/Education.js":
+/*!**************************************************!*\
+  !*** ./resources/js/dashboard/apis/Education.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Api */ "./resources/js/dashboard/apis/Api.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  get: function get() {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"].get('/educations');
+  },
+  "delete": function _delete(id) {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/educations/' + id);
+  },
+  store: function store(form) {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"].post('/educations', form);
+  },
+  update: function update(id, form) {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"].put('/educations/' + id, form);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/apis/Employment.js":
+/*!***************************************************!*\
+  !*** ./resources/js/dashboard/apis/Employment.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Api */ "./resources/js/dashboard/apis/Api.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  get: function get() {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"].get('/employments');
+  },
+  store: function store(form) {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"].post('/employments', form);
+  },
+  update: function update(id, form) {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"].put('/employments/' + id, form);
+  },
+  "delete": function _delete(id) {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/employments/' + id);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/apis/Message.js":
+/*!************************************************!*\
+  !*** ./resources/js/dashboard/apis/Message.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Api */ "./resources/js/dashboard/apis/Api.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  get: function get() {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"].get('/messages');
+  },
+  "delete": function _delete(id) {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/messages/' + id);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/apis/Portfolio.js":
+/*!**************************************************!*\
+  !*** ./resources/js/dashboard/apis/Portfolio.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Api */ "./resources/js/dashboard/apis/Api.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  get: function get() {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"].get('/portfolios');
+  },
+  store: function store(form) {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"].post('/portfolios', form);
+  },
+  update: function update(id, form) {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"].post('/portfolios/' + id, form);
+  },
+  "delete": function _delete(id) {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/portfolios/' + id);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/apis/Profile.js":
+/*!************************************************!*\
+  !*** ./resources/js/dashboard/apis/Profile.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Api */ "./resources/js/dashboard/apis/Api.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  get: function get() {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"].get('/profiles');
+  },
+  update: function update(id, form) {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"].post('/profiles/' + id, form);
+  },
+  store: function store(form) {
+    return API.post('/profiles', form);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/apis/Skills.js":
+/*!***********************************************!*\
+  !*** ./resources/js/dashboard/apis/Skills.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Api */ "./resources/js/dashboard/apis/Api.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  get: function get() {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"].get('/skills');
+  },
+  store: function store(form) {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"].post('/skills', form);
+  },
+  update: function update(id, form) {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"].put('/skills/' + id, form);
+  },
+  "delete": function _delete(id) {
+    return _Api__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('/skills/' + id);
+  }
+});
 
 /***/ }),
 
@@ -69621,7 +69808,7 @@ var render = function() {
                 _vm.errors
                   ? _c(
                       "div",
-                      _vm._l(_vm.errors, function(key, error) {
+                      _vm._l(_vm.errors, function(error, key) {
                         return _c(
                           "div",
                           { key: key, staticClass: "alert alert-danger" },
@@ -72138,10 +72325,10 @@ var render = function() {
                 _vm.errors
                   ? _c(
                       "div",
-                      _vm._l(_vm.errors, function(error) {
+                      _vm._l(_vm.errors, function(error, index) {
                         return _c(
                           "div",
-                          { staticClass: "alert alert-danger" },
+                          { key: index, staticClass: "alert alert-danger" },
                           [_vm._v(_vm._s(error))]
                         )
                       }),

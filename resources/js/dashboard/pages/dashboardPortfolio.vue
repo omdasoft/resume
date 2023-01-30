@@ -146,6 +146,7 @@
 </template>
 
 <script>
+import Portfolio from '../apis/Portfolio';
 export default {
     data() {
         return {
@@ -167,7 +168,7 @@ export default {
     },
     methods:{
         getPortfolioData() {
-            axios.get('/api/portfolios').then((res) => {
+            Portfolio.get().then((res) => {
                this.portfolios = res.data;
             });
         },
@@ -214,11 +215,7 @@ export default {
                 formData.append(key, value);
             });
 
-            axios.post('/api/portfolios/', formData, {
-                headers: {
-                    'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
-                }
-            }).then((res) => {
+            Portfolio.store(formData).then((res) => {
                 this.$refs.Close.click();
                 this.getPortfolioData();
                 Toast.fire(
@@ -245,11 +242,7 @@ export default {
             });
 
             formData.append('_method', 'put');
-            axios.post('/api/portfolios/'+this.formData.id, formData, {
-                headers: {
-                    'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
-                }
-            }).then((res) => {
+            Portfolio.update(this.formData.id, formData).then((res) => {
                 console.log(res.data);
                 this.$refs.Close.click();
                 this.getPortfolioData();
@@ -271,7 +264,7 @@ export default {
         },
         deletePortfolio(id) {
             if(confirm("are you sure you want to delete this record ?")) {
-                axios.delete('/api/portfolios/'+id).then((res) => {
+                Portfolio.delete(id).then((res) => {
                     this.getPortfolioData();
                     Toast.fire(
                         "success",

@@ -6,17 +6,60 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 class MessageController extends Controller
 {
-    //return all messages
-    public function index(){
-        $messages = Message::orderBy('created_at','desc')->paginate('10');
-        return response()->json($messages);
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $messages = Message::latest()->paginate(10);
+        return response()->json($messages, 200);
     }
 
-    //delete message
-    public function delete(Request $request){
-        
-        Message::findOrFail($request->id)->delete();
-        
-        return response()->json(['message' => 'the message deleted successfully']);
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Message::findOrFail($id)->delete();
+        return response()->json('message deleted successfully', 200);
     }
 }
