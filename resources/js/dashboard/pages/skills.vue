@@ -71,7 +71,7 @@
                     </div>
                     <div class="modal-body">
                         <div v-if="errors">
-                            <div v-for="(error, index) in errors" class="alert alert-danger" :key="index">{{ error }}</div>
+                            <div v-for="(error, index) in errors" :key="index" class="alert alert-danger">{{ error }}</div>
                         </div>
                         <form @submit.prevent="editMode === true ? updateSkills():storeSkills()" method="post">
                             <div class="row">
@@ -111,6 +111,7 @@
     </div>
 </template>
 <script>
+import Skills from '../apis/Skills';
     export default {
         data() {
             return {
@@ -126,7 +127,7 @@
         },
         methods: {
             getSkills() {
-                axios.get('/api/skills').then((res) => {
+                Skills.get().then((res) => {
                    this.skills = res.data;
                 });
             },
@@ -143,7 +144,7 @@
                 $('#createEditSkills').modal('show');
             },
             storeSkills() {
-                this.formData.post('/api/skills/').then((res) => {
+                Skills.store(this.formData).then((res) => {
                     this.$refs.Close.click();
                     this.getSkills();
                     Toast.fire(
@@ -163,7 +164,7 @@
                 });
             },
             updateSkills() {
-                this.formData.put('/api/skills/'+this.formData.id).then((res) => {
+                Skills.update(this.formData.id, this.formData).then((res) => {
                     this.$refs.Close.click();
                     this.getSkills();
                     Toast.fire(
@@ -195,7 +196,7 @@
                     })
                     .then((result) => {
                         if (result.value) {
-                            axios.delete('/api/skills/'+id).then((res) => {
+                            Skills.delete(id).then((res) => {
                                 this.getSkills();
                                 Toast.fire(
                                     "success",

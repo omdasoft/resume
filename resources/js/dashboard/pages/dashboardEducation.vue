@@ -154,6 +154,7 @@
     import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
     //import moment 
     import moment from 'moment';
+    import Education from '../apis/Education';
     export default {
         data() {
             return {
@@ -180,7 +181,7 @@
         },
         methods: {
             getEducationInfo() {
-                axios.get('/api/educations').then((res) => {
+                Education.get().then((res) => {
                    this.educationInfo = res.data;
                 });
             },
@@ -189,15 +190,17 @@
                 this.formData.reset();
                 this.errors = ""
                 $('#createEditEducation').modal('show');
+                this.errors = "";
             },
             updateEducationModal(education) {
                 this.editMode = true;
                 this.formData.fill(education);
                 this.errors = ""
                 $('#createEditEducation').modal('show');
+                this.errors = "";
             },
             storeEducation() {
-                this.formData.post('/api/educations/').then((res) => {
+                Education.store(this.formData).then((res) => {
                     this.$refs.Close.click();
                     this.getEducationInfo();
                     Toast.fire(
@@ -217,7 +220,7 @@
                 });
             },
             updateEducation() {
-                this.formData.put('/api/educations/'+this.formData.id).then((res) => {
+                Education.update(this.formData.id, this.formData).then((res) => {
                     this.$refs.Close.click();
                     this.getEducationInfo();
                     Toast.fire(
@@ -238,7 +241,7 @@
             },
             deleteEducation(id) {
                 if(confirm("are you sure you want to delete this record ?")) {
-                    axios.delete('/api/educations/'+id).then((res) => {
+                    Education.delete(id).then((res) => {
                         this.getEducationInfo();
                         Toast.fire(
                             "success",

@@ -175,6 +175,8 @@
 </template>
 
 <script>
+    import Profile from '../apis/Profile';
+    //import Csrf from '../apis/Csrf';
     export default {
         data() {
             return{
@@ -201,7 +203,7 @@
         },
         methods: {
             getProfileInfo() {
-                axios.get("/api/profiles").then((response) => {
+                Profile.get().then((response) => {
                     this.profileInfo = response.data;
                 });
             },
@@ -238,11 +240,7 @@
                     formData.append(key, value);
                 });
                 formData.append('_method', 'put');
-                axios.post('/api/profiles/'+this.formData.id, formData, {
-                    headers: {
-                    'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
-                    }
-                }).then((res) => {
+                Profile.update(this.formData.id, formData).then((res) => {
                     this.$refs.Close.click();
                     this.getProfileInfo();
                     Toast.fire(
@@ -269,11 +267,7 @@
                 _.each(this.formData, (value, key) => {
                     formData.append(key, value);
                 });
-                axios.post('/api/profiles/', formData, {
-                    headers: {
-                        'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
-                    }
-                }).then((res) => {
+               Profile.store(formData).then((res) => {
                     this.$refs.Close.click();
                     this.getProfileInfo();
                     Toast.fire(

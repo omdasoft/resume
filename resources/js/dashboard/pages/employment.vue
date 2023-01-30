@@ -168,6 +168,7 @@ import datePicker from 'vue-bootstrap-datetimepicker';
 import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
 //import moment 
 import moment from 'moment';
+import Employment from '../apis/Employment';
     export default {
         data() {
             return {
@@ -203,7 +204,7 @@ import moment from 'moment';
         },
         methods: {
             getEmploymentData() {
-                axios.get('/api/employments').then((res) => {
+                Employment.get().then((res) => {
                     this.employmentData = res.data;
                 });
             },
@@ -220,7 +221,7 @@ import moment from 'moment';
                 this.disableEndDateField = (this.formData.until_now === 1?true:false);
             },
             storeEmployment() {
-                this.formData.post('/api/employments').then((res) => {
+                Employment.store(this.formData).then((res) => {
                     this.$refs.Close.click();
                     this.getEmploymentData();
                     Toast.fire(
@@ -240,7 +241,7 @@ import moment from 'moment';
                 });
             },
             updateEmployment() {
-                this.formData.put('/api/employments/'+this.formData.id).then((res) => {
+                Employment.update(this.formData.id, this.formData).then((res) => {
                     //console.log(res.data);
                     this.$refs.Close.click();
                     this.getEmploymentData();
@@ -290,7 +291,7 @@ import moment from 'moment';
             deleteEmploymentDetails(id) {
                 if(confirm("are you sure you want to delete this record ?")) {
                     var detailId = id;
-                    axios.delete('/api/employments/details/'+id).then((res) => {
+                    Employment.delete(id).then((res) => {
                         var index = this.formData.employment_details.map(function(detail) {
                             return detail.id;
                         }).indexOf(detailId);

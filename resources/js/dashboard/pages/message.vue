@@ -108,6 +108,7 @@
 </template>
 
 <script>
+import Messages from '../apis/Message';
 export default {
   data() {
     return {
@@ -119,7 +120,7 @@ export default {
   },
   methods: {
     getMessages(page = 1) {
-      axios.get("/api/get_messages?page=" + page).then((response) => {
+      Messages.get().then((response) => {
         this.messages = response.data;
       });
     },
@@ -139,11 +140,7 @@ export default {
         })
         .then((result) => {
           if (result.value) {
-             axios.get('/api/delete_message', {
-                            params: {
-                                id: id
-                            }
-                        }).then((response) => {
+             Messages.delete(id).then((response) => {
               this.getMessages()
               Toast.fire(
                 "success",
