@@ -18,8 +18,12 @@ use App\Http\Resources\EmploymentResource;
 use App\Http\Resources\PortfolioResource;
 use App\Http\Resources\ProfileResource;
 use App\Http\Resources\EducationResource;
+use App\Traits\FileUpload;
+use Storage;
 class FrontendController extends Controller
 {
+    use FileUpload;
+    
     public function index(){
         return view('layouts.front');
     }
@@ -57,5 +61,21 @@ class FrontendController extends Controller
     public function sendMessage(SendMessageRequest $request){
         Message::create($request->validated());
         return response()->json(['success'=>'your message sent successfully']);
+    }
+
+     /**
+     * Download cv file
+     * 
+     * @param string $fileName
+     * @return \Illuminate\Http\Response
+    */
+    public function download($fileName)
+    {
+        if($this->checkIfFileExists($fileName)) {
+            $path = Storage::disk('public')->path("uploads/$fileName");
+    	    return response()->download($path, $fileName, ['Content-Type: application/pdf']);
+        }else {
+            abort('file not found', 404);
+        }
     }
 }

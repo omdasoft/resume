@@ -166,7 +166,7 @@ import moment from 'moment'
         });
       },
       downloadCv(cv) {
-        axios.get('/api/download/'+cv, {responseType: 'arraybuffer'}).then((res) => {
+        axios.get('/api/frontend/download/'+cv, {responseType: 'arraybuffer'}).then((res) => {
           let blob = new Blob([res.data], { type: 'application/pdf' })
           let link = document.createElement('a')
           link.href = window.URL.createObjectURL(blob)

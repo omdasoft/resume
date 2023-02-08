@@ -21,6 +21,7 @@ Route::prefix('frontend')->group(function () {
     Route::get('/skills', [FrontendController::class, 'skills']);
     Route::get('/education', [FrontendController::class, 'education']);
     Route::post('/send_message', [FrontendController::class, 'sendMessage']);
+    Route::get('/download/{cv}', [FrontendController::class, 'download']);
     Route::get('/portfolios', [FrontendPortfolioController::class, 'index']);
 });
 
